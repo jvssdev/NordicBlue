@@ -1,314 +1,178 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: BlueWalk
-# description will be included in the image's metadata
 description: This is my personal OS image.
-
-# the base image to build on top of (FROM) and the version tag to use
 base-image: quay.io/fedora-ostree-desktops/base-atomic
 image-version: latest
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
-   - type: containerfile
-      snippets:
-        - COPY --from=ghcr.io/ublue-os/akmods:main-42 /rpms /tmp/rpms
-        - COPY --from=ghcr.io/ublue-os/akmods:main-42 /kernel-rpms /tmp/rpms/kernel
-        - RUN find /tmp/rpms
-        - RUN rpm -q ublue-os-akmods-addons || rpm-ostree install /tmp/rpms/ublue-os/ublue-os-akmods-addons*.rpm
-    - type: script
-      scripts:
-        - installsignedkernel.sh
-        
+  - type: containerfile
+    snippets:
+      - COPY --from=ghcr.io/ublue-os/akmods:main-42 /rpms /tmp/rpms
+      - COPY --from=ghcr.io/ublue-os/akmods:main-42 /kernel-rpms /tmp/rpms/kernel
+      - RUN find /tmp/rpms
+      - RUN rpm -q ublue-os-akmods-addons || rpm-ostree install /tmp/rpms/ublue-os/ublue-os-akmods-addons*.rpm
+
   - type: files
     files:
       - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+        destination: /
+      - source: system/usr
+        destination: /usr
+      - source: system/etc
+        destination: /etc
+      - source: waydroid-setup.sh
+        destination: /usr/bin/waydroid-setup
+        mode: 0755
+      - source: waydroid.desktop
+        destination: /usr/share/applications/waydroid.desktop
+      - source: waydroid-session.desktop
+        destination: /usr/share/wayland-sessions/waydroid.desktop
+      - source: niri.desktop
+        destination: /usr/share/wayland-sessions/niri.desktop
+      - source: waydroid.service
+        destination: /etc/skel/.config/systemd/user/waydroid.service
+      - source: setup-waydroid
+        destination: /usr/libexec/ublue-os/ujust/setup-waydroid
+        mode: 0755
 
   - type: rpm-ostree
-      install:
-        - just
-        - powerstat
+    install:
+      - just
+      - powerstat
 
-    - type: rpm-ostree
-      repos:
-        - https://copr.fedorainfracloud.org/coprs/ublue-os/packages/repo/fedora-%OS_VERSION%/ublue-os-packages-fedora-%OS_VERSION%.repo
-      install:
-        - ublue-os-udev-rules
-        - ublue-os-update-services
-        - ublue-os-signing
-        - ublue-os-luks
-        - ublue-os-just
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/ublue-os/packages/repo/fedora-%OS_VERSION%/ublue-os-packages-fedora-%OS_VERSION%.repo
+    install:
+      - ublue-os-udev-rules
+      - ublue-os-update-services
+      - ublue-os-signing
+      - ublue-os-luks
+      - ublue-os-just
 
-    - type: script
-      scripts:
-        - installandroidudev.sh
-        - ensureautoupdates.sh
-        - fixupstreamicdloaderbug.sh
-        
-  - type: dnf
-  optfix:
+  - type: rpm-ostree
+    optfix:
       - zen
     repos:
-      files:
-        - https://repo.secureblue.dev/secureblue.repo
-      copr:
-        - yalter/niri
-        - ulysg/xwayland-satellite 
-        - errornointernet/quickshell
-        - atim/starship
-        - sneexy/zen-browser
-        - secureblue/trivalent
-        - scottames/ghostty
-        - wef/cliphist
-        - heus-sueh/packages
-        - content: |
-          [anydesk]
-          name=AnyDesk Fedora - stable
-          baseurl=http://rpm.anydesk.com/fedora/$basearch/
-          gpgcheck=1
-          repo_gpgcheck=1
-          gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
-        target: /etc/yum.repos.d/AnyDesk-Fedora.repo
-        
+      - https://repo.secureblue.dev/secureblue.repo
+      - https://copr.fedorainfracloud.org/coprs/yalter/niri/repo/fedora-%OS_VERSION%/yalter-niri-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/ulysg/xwayland-satellite/repo/fedora-%OS_VERSION%/ulysg-xwayland-satellite-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/errornointernet/quickshell/repo/fedora-%OS_VERSION%/errornointernet-quickshell-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/sneexy/zen-browser/repo/fedora-%OS_VERSION%/sneexy-zen-browser-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/secureblue/trivalent/repo/fedora-%OS_VERSION%/secureblue-trivalent-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/scottames/ghostty/repo/fedora-%OS_VERSION%/scottames-ghostty-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/wef/cliphist/repo/fedora-%OS_VERSION%/wef-cliphist-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/heus-sueh/packages/repo/fedora-%OS_VERSION%/heus-sueh-packages-fedora-%OS_VERSION%.repo
     install:
-      packages:
-        - niri
-        - xdg-desktop-portal-gtk
-        - xdg-desktop-portal-gnome
-        - gnome-keyring
-        - xwayland-satellite
-        - xsettingsd
-        - quickshell-git
-        - brightnessctl
-        - jetbrains-mono-fonts
-        - fira-code-fonts
-        - qt5ct
-        - qt6ct
-        - cliphist
-        - fzf
-        - matugen
-        - gammastep
-        - wl-clipboard
-        - micro
-        - starship
-        - zen-browser
-        - ghostty
-        - anydesk
-        - distrobox
-        - greetd
-        - tuigreet
-        - greetd-selinux
-        - waydroid
-        - trivalent
-        - trivalent-subresource-filter
-        - fzf
-        - just
-        - vim 
-        - neovim 
-        - python3-neovim
-        - openssl
-        - pavucontrol
-        - wireplumber
-        - pipewire
-        - pamixer
-        - pulseaudio-utils
-        - dbus-tools
-        - xdg-user-dirs
-        - dbus-daemon
-        - vulkan-validation-layers
-        - vulkan-tools
-        - xfce-polkit 
-        - fprintd-pam
-        - network-manager-applet
-        - NetworkManager-openvpn
-        - NetworkManager-openvpn-gnome
-        - NetworkManager-openconnect
-        - NetworkManager-openconnect-gnome
-        - bluez
-        - bluez-tools
-        - blueman
-        - firewall-config
+      - niri
+      - xdg-desktop-portal-gtk
+      - xdg-desktop-portal-gnome
+      - gnome-keyring
+      - xwayland-satellite
+      - xsettingsd
+      - quickshell-git
+      - brightnessctl
+      - jetbrains-mono-fonts
+      - fira-code-fonts
+      - qt5ct
+      - qt6ct
+      - cliphist
+      - fzf
+      - matugen
+      - gammastep
+      - wl-clipboard
+      - micro
+      - starship
+      - zen-browser
+      - ghostty
+      - distrobox
+      - greetd
+      - tuigreet
+      - greetd-selinux
+      - waydroid
+      - trivalent
+      - trivalent-subresource-filter
+      - just
+      - vim
+      - neovim
+      - python3-neovim
+      - openssl
+      - pavucontrol
+      - wireplumber
+      - pipewire
+      - pamixer
+      - pulseaudio-utils
+      - dbus-tools
+      - xdg-user-dirs
+      - dbus-daemon
+      - vulkan-validation-layers
+      - vulkan-tools
+      - xfce-polkit
+      - fprintd-pam
+      - network-manager-applet
+      - NetworkManager-openvpn
+      - NetworkManager-openvpn-gnome
+      - NetworkManager-openconnect
+      - NetworkManager-openconnect-gnome
+      - bluez
+      - bluez-tools
+      - blueman
+      - firewall-config
     remove:
-      packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
-        - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
-        - alacritty
-  - type: script
-      scripts:
-        - installproprietarypackages.sh
+      - firefox
+      - firefox-langpacks
+      - alacritty
+
+  - type: rpm-ostree
+    install:
+      - heif-pixbuf-loader
+      - ffmpeg
+      - ffmpeg-libs
+      - ffmpegthumbnailer
+      - pipewire-libs-extra
+      - libfdk-aac
+      - gstreamer1-plugins-ugly
+    remove:
+      - gstreamer1-plugins-ugly-free
+      - fdk-aac-free
+      - ffmpeg-free
+      - libavcodec-free
+      - libavdevice-free
+      - libavfilter-free
+      - libavformat-free
+      - libavutil-free
+      - libpostproc-free
+      - libswresample-free
+      - libswscale-free
+
   - type: systemd
-      system:
-        enabled:
-          - greetd-boot.service
-          - greetd.service
-          - xwayland-satellite.service
-
- - type: dnf
-      install:
-        - heif-pixbuf-loader
-        - ffmpeg
-        - ffmpeg-libs
-        - ffmpegthumbnailer
-        - pipewire-libs-extra
-        - libfdk-aac
-        - gstreamer1-plugins-ugly 
-      remove:
-        - gstreamer1-plugins-ugly-free
-        - fdk-aac-free
-        - ffmpeg-free
-        - libavcodec-free  
-        - libavdevice-free
-        - libavfilter-free
-        - libavformat-free  
-        - libavutil-free  
-        - libpostproc-free  
-        - libswresample-free  
-        - libswscale-free  
-
-    - type: script
-      scripts:
-        - installrpmfusion.sh
-        - removeunusedrepos.sh
-
-    - type: files
-      files:
-        - source: system/usr
-          destination: /usr
-        - source: system/etc
-          destination: /etc
-          
-   - type: script
-      scripts:
-        - addbrewjustimport.sh
-
-  - type: default-flatpaks
-    configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
-        scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
-          - org.gnome.Loupe
-      - scope: user # Also add Flathub user repo, but no user packages
-
-   - type: script
-      scripts:
-        - removeunusedrepos.sh
-        - regenerateinitramfs.sh
-
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+    system:
+      enabled:
+        - greetd-boot.service
+        - greetd.service
+        - xwayland-satellite.service
 
   - type: script
     scripts:
-      - |
-        #!/bin/bash
-        set -eux
-        # Install Material Symbols font
-        mkdir -p /usr/local/share/fonts
-        curl -L "https://github.com/google/material-design-icons/raw/master/variablefont/MaterialSymbolsRounded%5BFILL%2CGRAD%2Copsz%2Cwght%5D.ttf" -o /usr/local/share/fonts/MaterialSymbolsRounded.ttf
-       
-        # Configure Waydroid: SELinux and initialization
-        setsebool -P waydroid_can_use_modules 1
-        semanage permissive -a waydroid_t
-        waydroid init -s GAPPS -f
-        # Install ujust script for Waydroid
-        mkdir -p /usr/libexec/ublue-os/ujust
-        curl -L "https://raw.githubusercontent.com/ublue-os/bazzite/main/system_files/desktop/usr/libexec/ublue-os/ujust/setup-waydroid" -o /usr/libexec/ublue-os/ujust/setup-waydroid
-        chmod +x /usr/libexec/ublue-os/ujust/setup-waydroid
-        # Waydroid initialization script
-        cat > /usr/bin/waydroid-setup << 'EOF'
-        #!/bin/bash
-        systemctl --user start waydroid-container
-        waydroid session start
-        EOF
-        chmod +x /usr/bin/waydroid-setup
-        # Systemd service for Waydroid
-        mkdir -p /etc/skel/.config/systemd/user
-        cat > /etc/skel/.config/systemd/user/waydroid.service << 'EOF'
-        [Unit]
-        Description=Waydroid Session
-        After=graphical-session.target
-        [Service]
-        ExecStart=/usr/bin/waydroid-setup
-        Restart=on-failure
-        [Install]
-        WantedBy=graphical-session.target
-        EOF
-        # Waydroid launcher
-        mkdir -p /usr/share/applications
-        cat > /usr/share/applications/waydroid.desktop << 'EOF'
-        [Desktop Entry]
-        Name=Waydroid
-        Exec=waydroid-setup
-        Icon=waydroid
-        Type=Application
-        EOF
-        # Wayland session for Waydroid
-        mkdir -p /usr/share/wayland-sessions
-        cat > /usr/share/wayland-sessions/waydroid.desktop << 'EOF'
-        [Desktop Entry]
-        Name=Waydroid
-        Comment=Android in a container
-        Exec=waydroid session start
-        Type=Application
-        EOF
-        # Wayland session for Niri
-        mkdir -p /usr/share/wayland-sessions
-        cat > /usr/share/wayland-sessions/niri.desktop << 'EOF'
-        [Desktop Entry]
-        Name=Niri
-        Comment=A scrollable-tiling Wayland compositor
-        Exec=niri
-        Type=Application
-        DesktopNames=niri
-        EOF
-        # Install dgop
-        sudo sh -c "curl -L https://github.com/AvengeMedia/dgop/releases/latest/download/dgop-linux-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').gz | gunzip | tee /usr/local/bin/dgop > /dev/null && chmod +x /usr/local/bin/dgop"
-        
-        #!/usr/bin/env bash
+      - installsignedkernel.sh
+      - installandroidudev.sh
+      - ensureautoupdates.sh
+      - fixupstreamicdloaderbug.sh
+      - installproprietarypackages.sh
+      - installrpmfusion.sh
+      - installanydesk.sh
+      - removeunusedrepos.sh
+      - regenerateinitramfs.sh
+      - configure-system.sh
 
-        set -euo pipefail
-        
-        echo "Installing secureblue Trivalent selinux policy"
-        echo "Disable Negativo repo, to prevent installing conflicting non-needed 'schily' package"
-        dnf5 -y config-manager setopt fedora-cdrtools.enabled=0
-        dnf5 -y config-manager setopt fedora-multimedia.enabled=0
-        echo "Install 'selinux-policy-devel' build package & it's dependencies"
-        dnf5 -y install selinux-policy-devel
-        echo "Downloading secureblue Trivalent selinux policy"
-        TRIVALENT_POLICY_URL="https://raw.githubusercontent.com/secureblue/secureblue/refs/heads/live/files/scripts/selinux/trivalent"
-        SELINUX_SCRIPT_URL="https://raw.githubusercontent.com/secureblue/secureblue/refs/heads/live/files/scripts/installselinuxpolicies.sh"
-        curl -fLs --create-dirs -O "${TRIVALENT_POLICY_URL}/trivalent.fc" --output-dir ./selinux/trivalent
-        curl -fLs --create-dirs -O "${TRIVALENT_POLICY_URL}/trivalent.if" --output-dir ./selinux/trivalent
-        curl -fLs --create-dirs -O "${TRIVALENT_POLICY_URL}/trivalent.te" --output-dir ./selinux/trivalent
-        curl -fLs --create-dirs -O "${SELINUX_SCRIPT_URL}" --output-dir "${PWD}"
-        echo "Patching selinux script to only do Trivalent-related changes"
-        sed -i 's/^policy_modules=.*/policy_modules=(trivalent)/' "${PWD}/installselinuxpolicies.sh"
-        sed -i '/\${cil_policy_modules\[\@\]}/d' "${PWD}/installselinuxpolicies.sh"
-        echo "Executing trivalent.sh script"
-        bash "${PWD}/installselinuxpolicies.sh"
-        echo "Cleaning up build package 'selinux-policy-devel' & it's dependencies"
-        dnf5 -y remove selinux-policy-devel
-        echo "Enabling Negativo repos (as default state)"
-        dnf5 -y config-manager setopt fedora-cdrtools.enabled=1
-        dnf5 -y config-manager setopt fedora-multimedia.enabled=1
-        
-        echo "Assure that network sandbox is always disabled by default (to ensure that login data remains)"
-        echo "https://github.com/fedora-silverblue/issue-tracker/issues/603"
-        echo -e '\nCHROMIUM_FLAGS+=" --disable-features=NetworkServiceSandbox"' >> /etc/trivalent/trivalent.conf
-        
-        echo "Disable search engine choice screen"
-        echo -e '\nCHROMIUM_FLAGS+=" --disable-search-engine-choice-screen"' >> /etc/trivalent/trivalent.conf
-        
-        echo "Enable middle-click scrolling by default"
-        sed -i '/CHROMIUM_FLAGS+=" --enable-features=\$FEATURES"/d' /etc/trivalent/trivalent.conf
-        echo -e '\nFEATURES+=",MiddleClickAutoscroll"\nCHROMIUM_FLAGS+=" --enable-features=$FEATURES"' >> /etc/trivalent/trivalent.conf
-                
-        
-        # Cleanup
-        dnf clean all
-        rm -rf /var/cache/dnf /tmp/*
+  - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        install:
+          - org.gnome.Loupe
+      - scope: user
+
+  - type: signing
