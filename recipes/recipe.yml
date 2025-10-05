@@ -179,6 +179,10 @@ modules:
           destination: /usr
         - source: system/etc
           destination: /etc
+          
+   - type: script
+      scripts:
+        - addbrewjustimport.sh
 
   - type: default-flatpaks
     configurations:
