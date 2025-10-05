@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -oue pipefail
+
 set -eux
 
 # Install Material Symbols font
