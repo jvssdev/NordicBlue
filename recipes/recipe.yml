@@ -47,7 +47,6 @@ modules:
         - installandroidudev.sh
         - ensureautoupdates.sh
         - fixupstreamicdloaderbug.sh
-        - addimageinfo.sh
         
   - type: dnf
     repos:
