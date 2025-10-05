@@ -16,6 +16,7 @@ modules:
     files:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+        
   - type: dnf
     repos:
       copr:
@@ -61,13 +62,10 @@ modules:
         - ghostty
         - anydesk
         - distrobox
-        - wireplumber
-        - pipewire
-        - pamixer
-        - pulseaudio-utils
         - greetd
         - tuigreet
         - greetd-selinux
+        - waydroid
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -93,3 +91,73 @@ modules:
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
+
+  - type: script
+    scripts:
+      - |
+        #!/bin/bash
+        set -eux
+        # Install Material Symbols font
+        mkdir -p /usr/local/share/fonts
+        curl -L "https://github.com/google/material-design-icons/raw/master/variablefont/MaterialSymbolsRounded%5BFILL%2CGRAD%2Copsz%2Cwght%5D.ttf" -o /usr/local/share/fonts/MaterialSymbolsRounded.ttf
+       
+        # Configure Waydroid: SELinux and initialization
+        setsebool -P waydroid_can_use_modules 1
+        semanage permissive -a waydroid_t
+        waydroid init -s GAPPS -f
+        # Install ujust script for Waydroid
+        mkdir -p /usr/libexec/ublue-os/ujust
+        curl -L "https://raw.githubusercontent.com/ublue-os/bazzite/main/system_files/desktop/usr/libexec/ublue-os/ujust/setup-waydroid" -o /usr/libexec/ublue-os/ujust/setup-waydroid
+        chmod +x /usr/libexec/ublue-os/ujust/setup-waydroid
+        # Waydroid initialization script
+        cat > /usr/bin/waydroid-setup << 'EOF'
+        #!/bin/bash
+        systemctl --user start waydroid-container
+        waydroid session start
+        EOF
+        chmod +x /usr/bin/waydroid-setup
+        # Systemd service for Waydroid
+        mkdir -p /etc/skel/.config/systemd/user
+        cat > /etc/skel/.config/systemd/user/waydroid.service << 'EOF'
+        [Unit]
+        Description=Waydroid Session
+        After=graphical-session.target
+        [Service]
+        ExecStart=/usr/bin/waydroid-setup
+        Restart=on-failure
+        [Install]
+        WantedBy=graphical-session.target
+        EOF
+        # Waydroid launcher
+        mkdir -p /usr/share/applications
+        cat > /usr/share/applications/waydroid.desktop << 'EOF'
+        [Desktop Entry]
+        Name=Waydroid
+        Exec=waydroid-setup
+        Icon=waydroid
+        Type=Application
+        EOF
+        # Wayland session for Waydroid
+        mkdir -p /usr/share/wayland-sessions
+        cat > /usr/share/wayland-sessions/waydroid.desktop << 'EOF'
+        [Desktop Entry]
+        Name=Waydroid
+        Comment=Android in a container
+        Exec=waydroid session start
+        Type=Application
+        EOF
+        # Wayland session for Niri
+        mkdir -p /usr/share/wayland-sessions
+        cat > /usr/share/wayland-sessions/niri.desktop << 'EOF'
+        [Desktop Entry]
+        Name=Niri
+        Comment=A scrollable-tiling Wayland compositor
+        Exec=niri
+        Type=Application
+        DesktopNames=niri
+        EOF
+        # Install dgop
+        sudo sh -c "curl -L https://github.com/AvengeMedia/dgop/releases/latest/download/dgop-linux-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').gz | gunzip | tee /usr/local/bin/dgop > /dev/null && chmod +x /usr/local/bin/dgop"
+        # Cleanup
+        dnf clean all
+        rm -rf /var/cache/dnf /tmp/*
