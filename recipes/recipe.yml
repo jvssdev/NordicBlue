@@ -49,6 +49,8 @@ modules:
         - fixupstreamicdloaderbug.sh
         
   - type: dnf
+  optfix:
+      - zen
     repos:
       files:
         - https://repo.secureblue.dev/secureblue.repo
