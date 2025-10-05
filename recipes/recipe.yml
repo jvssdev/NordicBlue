@@ -20,6 +20,7 @@ modules:
     repos:
       copr:
         - yalter/niri
+        - ulysg/xwayland-satellite 
         - errornointernet/quickshell
         - atim/starship
         - sneexy/zen-browser
@@ -41,6 +42,8 @@ modules:
         - xdg-desktop-portal-gtk
         - xdg-desktop-portal-gnome
         - gnome-keyring
+        - xwayland-satellite
+        - xsettingsd
         - quickshell-git
         - brightnessctl
         - jetbrains-mono-fonts
@@ -48,6 +51,7 @@ modules:
         - qt5ct
         - qt6ct
         - cliphist
+        - fzf
         - matugen
         - gammastep
         - wl-clipboard
@@ -57,6 +61,13 @@ modules:
         - ghostty
         - anydesk
         - distrobox
+        - wireplumber
+        - pipewire
+        - pamixer
+        - pulseaudio-utils
+        - greetd
+        - tuigreet
+        - greetd-selinux
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -64,6 +75,13 @@ modules:
         - firefox
         - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
         - alacritty
+        
+  - type: systemd
+      system:
+        enabled:
+          - greetd-boot.service
+          - greetd.service
+          - xwayland-satellite.service
 
   - type: default-flatpaks
     configurations:
