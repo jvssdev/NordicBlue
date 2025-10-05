@@ -26,6 +26,28 @@ modules:
     files:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+
+  - type: rpm-ostree
+      install:
+        - just
+        - powerstat
+
+    - type: rpm-ostree
+      repos:
+        - https://copr.fedorainfracloud.org/coprs/ublue-os/packages/repo/fedora-%OS_VERSION%/ublue-os-packages-fedora-%OS_VERSION%.repo
+      install:
+        - ublue-os-udev-rules
+        - ublue-os-update-services
+        - ublue-os-signing
+        - ublue-os-luks
+        - ublue-os-just
+
+    - type: script
+      scripts:
+        - installandroidudev.sh
+        - ensureautoupdates.sh
+        - fixupstreamicdloaderbug.sh
+        - addimageinfo.sh
         
   - type: dnf
     repos:
