@@ -1,0 +1,30 @@
+modules:
+  - type: dnf
+    repos:
+      cleanup: true
+      nonfree: negativo17
+    install:
+      allow-erasing: true
+      install-weak-deps: false
+      packages:
+        - gstreamer1-plugin-vaapi
+        - libheif
+    replace:
+      - from-repo: fedora-multimedia
+        packages:
+          - old: ffmpeg-free
+            new: ffmpeg
+          - old: libavcodec-free
+            new: libavcodec
+          - old: libfdk-aac-free
+            new: libfdk-aac
+          - old: intel-media-driver
+            new: libva-intel-media-driver
+          - libva
+          - mesa-dri-drivers
+          - mesa-filesystem
+          - mesa-libEGL
+          - mesa-libGL
+          - mesa-libgbm
+          - mesa-va-drivers
+          - mesa-vulkan-drivers

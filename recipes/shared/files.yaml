@@ -1,0 +1,13 @@
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+      - source: system/usr
+        destination: /usr
+      - source: system/etc
+        destination: /etc
+      
+      - source: niri.desktop
+        destination: /usr/share/wayland-sessions/niri.desktop
+

@@ -1,0 +1,10 @@
+[Unit]
+Description=bluewalk secure boot update verification
+Wants=dbus.service
+After=dbus.service
+ConditionUser=!@system
+
+[Service]
+Type=oneshot
+ExecCondition=/usr/libexec/bluewalk/bluewalkcheckoutofdate
+ExecStart=/usr/libexec/bluewalk/bluewalkoutofdatenotify

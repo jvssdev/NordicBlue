@@ -1,0 +1,14 @@
+modules:
+  - type: default-flatpaks
+    configurations:
+        - notify: true
+          scope: system
+          install:
+            - org.gnome.Loupe
+            - org.gnome.Papers
+            - com.github.tchx84.Flatseal
+            - com.bitwarden.desktop 
+            - io.github.flattool.Warehouse
+            - io.ente.auth
+        - scope: user
+

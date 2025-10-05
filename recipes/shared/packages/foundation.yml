@@ -1,0 +1,155 @@
+modules:
+- type: dnf
+  optfix:
+      - zen
+  repos:
+      files:
+        - https://repo.secureblue.dev/secureblue.repo
+      copr:
+        - ublue-os/packages
+        - yalter/niri
+        - ulysg/xwayland-satellite
+        - errornointernet/quickshell
+        - sneexy/zen-browser
+        - secureblue/trivalent
+        - scottames/ghostty
+        - wef/cliphist
+        - heus-sueh/packages
+        - content: |
+          [fedora-multimedia]
+          name=Negativo17 Fedora Multimedia
+          baseurl=https://negativo17.org/repos/fedora-multimedia/$basearch/
+          gpgcheck=1
+          repo_gpgcheck=1
+          gpgkey=https://negativo17.org/repos/RPM-GPG-KEY-negativo17
+          enabled=1
+          priority=90
+          target: /etc/yum.repos.d/negativo17-fedora-multimedia.repo
+        - content: |
+          [rpmfusion-free]
+          name=RPM Fusion for Fedora $OS_VERSION - Free
+          baseurl=https://download1.rpmfusion.org/free/fedora/releases/$OS_VERSION/Everything/$basearch/os/
+          gpgcheck=1
+          repo_gpgcheck=1
+          gpgkey=https://download1.rpmfusion.org/free/fedora/RPM-GPG-KEY-rpmfusion-free-fedora-$OS_VERSION
+          enabled=1
+          priority=90
+          target: /etc/yum.repos.d/rpmfusion-free.repo
+        - content: |
+          [rpmfusion-nonfree]
+          name=RPM Fusion for Fedora $OS_VERSION - Nonfree
+          baseurl=https://download1.rpmfusion.org/nonfree/fedora/releases/$OS_VERSION/Everything/$basearch/os/
+          gpgcheck=1
+          repo_gpgcheck=1
+          gpgkey=https://download1.rpmfusion.org/nonfree/fedora/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$OS_VERSION
+          enabled=1
+          priority=90
+          target: /etc/yum.repos.d/rpmfusion-nonfree.repo
+      install:
+        allow-erasing: true
+        install-weak-deps: false
+        packages:
+          # Universal Blue
+          - ublue-os-udev-rules
+          - ublue-os-update-services
+          - ublue-os-signing
+          - ublue-os-luks
+          - ublue-os-just
+          - ublue-brew
+          - ublue-os-libvirt-workarounds
+          # Desktop 
+          - niri
+          - xdg-desktop-portal-gtk
+          - xdg-desktop-portal-gnome
+          - gnome-keyring
+          - xwayland-satellite
+          - xsettingsd
+          - quickshell-git
+          - brightnessctl
+          - jetbrains-mono-fonts
+          - fira-code-fonts
+          - qt5ct
+          - qt6ct
+          - cliphist
+          - fzf
+          - powerstat
+          - matugen
+          - gammastep
+          - wl-clipboard
+          - micro
+          - polkit
+          - zen-browser
+          - ghostty
+          - distrobox
+          - greetd
+          - tuigreet
+          - greetd-selinux
+          - trivalent
+          - trivalent-subresource-filter
+          - vim
+          - neovim
+          - python3-neovim
+          # Network
+          - openssl
+          - network-manager-applet
+          - NetworkManager-openvpn
+          - NetworkManager-openvpn-gnome
+          - NetworkManager-openconnect
+          - NetworkManager-openconnect-gnome
+          - firewall-config
+          - fprintd-pam
+          # Audio
+          - pavucontrol
+          - wireplumber
+          - pipewire
+          - pamixer
+          - pulseaudio-utils
+          # System
+          - dbus-tools
+          - xdg-user-dirs
+          - dbus-daemon
+          # Multimedia
+          - gstreamer1-plugin-vaapi
+          - gstreamer1-plugin-libav
+          - gstreamer1-plugins-bad-free-extras
+          - gstreamer1-plugins-bad-freeworld
+          - gstreamer1-plugins-ugly
+          - gstreamer1-vaapi
+          - libheif
+          - libheif-freeworld
+          # Graphics
+          - vulkan-validation-layers
+          - vulkan-tools
+          # Container
+          - podman-compose
+          - podman-tui
+          - podmansh
+          - docker-ce
+          - docker-ce-cli
+          - docker-buildx-plugin
+          - docker-compose-plugin
+          - containerd.io
+          # Virtualization
+          - qemu-char-spice
+          - qemu-device-display-virtio-gpu
+          - qemu-device-display-virtio-vga
+          - qemu-device-usb-redirect
+          - qemu-img
+          - qemu-system-x86-core
+          - qemu-user-binfmt
+          - qemu-user-static
+          - qemu
+          - virt-manager
+          - libvirt
+          - libvirt-nss
+          # Util
+          - p7zip
+          # Shell
+          - zsh
+      remove:
+          - firefox
+          - firefox-langpacks
+          - alacritty
+          - fedora-logos
+          - fedora-chromium-config
+

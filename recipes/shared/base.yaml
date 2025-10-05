@@ -1,0 +1,14 @@
+modules:
+  - from-file: shared/files.yml
+
+  - from-file: shared/bling-negativo17.yml
+
+  - from-file: packages/foundation.yml
+
+  - from-file: shared/script.yml
+
+  - from-file: shared/gschema-overrides.yml
+
+  - from-file: shared/default-flatpaks.yml
+
+  - from-file: shared/systemd.yml
