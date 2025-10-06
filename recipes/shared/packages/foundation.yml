@@ -37,6 +37,33 @@ modules:
       - fixupstreamicdloaderbug.sh
 
   - type: dnf
+    repos:
+      nonfree: negativo17
+    install:
+      packages:
+        - libopenjph 
+        - repo: fedora-multimedia
+          packages:
+            - libheif
+    replace:
+      - from-repo: fedora-multimedia
+        packages:
+          - libva
+          - libva-intel-media-driver
+          - intel-gmmlib
+          - intel-mediasdk
+          - mesa-dri-drivers
+          - mesa-filesystem
+          - mesa-libEGL
+          - mesa-libGL
+          - mesa-libgbm
+          - mesa-va-drivers
+          - mesa-vulkan-drivers
+
+
+
+
+  - type: dnf
     optfix:
       - zen
     repos:
@@ -47,36 +74,7 @@ modules:
         - secureblue/trivalent
         - scottames/ghostty
         - wef/cliphist
-      - content: |
-          [fedora-multimedia]
-          name=Negativo17 Fedora Multimedia
-          baseurl=https://negativo17.org/repos/fedora-multimedia/$basearch/
-          gpgcheck=1
-          repo_gpgcheck=1
-          gpgkey=https://negativo17.org/repos/RPM-GPG-KEY-negativo17
-          enabled=1
-          priority=90
-        target: /etc/yum.repos.d/negativo17-fedora-multimedia.repo
-      - content: |
-          [rpmfusion-free]
-          name=RPM Fusion for Fedora $OS_VERSION - Free
-          baseurl=https://download1.rpmfusion.org/free/fedora/releases/$OS_VERSION/Everything/$basearch/os/
-          gpgcheck=1
-          repo_gpgcheck=1
-          gpgkey=https://download1.rpmfusion.org/free/fedora/RPM-GPG-KEY-rpmfusion-free-fedora-$OS_VERSION
-          enabled=1
-          priority=90
-        target: /etc/yum.repos.d/rpmfusion-free.repo
-      - content: |
-          [rpmfusion-nonfree]
-          name=RPM Fusion for Fedora $OS_VERSION - Nonfree
-          baseurl=https://download1.rpmfusion.org/nonfree/fedora/releases/$OS_VERSION/Everything/$basearch/os/
-          gpgcheck=1
-          repo_gpgcheck=1
-          gpgkey=https://download1.rpmfusion.org/nonfree/fedora/RPM-GPG-KEY-rpmfusion-nonfree-fedora-$OS_VERSION
-          enabled=1
-          priority=90
-        target: /etc/yum.repos.d/rpmfusion-nonfree.repo
+      
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -156,6 +154,34 @@ modules:
         - p7zip
         # Shell
         - zsh
+
+  - repo: fedora-multimedia
+    packages:
+            - intel-vaapi-driver
+            - libva-utils
+            - heif-pixbuf-loader
+            - pipewire-libs-extra
+    replace:
+      - from-repo: fedora-multimedia
+        packages:
+          - old: ffmpeg-free
+            new: ffmpeg
+          - old: libfdk-aac-free
+            new: libfdk-aac
+          - old: libavcodec-free
+            new: libavcodec
+      # Workaround OpenCL bug
+      # https://github.com/ublue-os/main/pull/692
+      - from-repo: fedora
+        packages:
+          - old: OpenCL-ICD-Loader
+            new: ocl-icd
+  - type: dnf
+    install:
+      packages:
+        - repo: fedora-multimedia
+          packages:
+            - ffmpeg-libs
     remove:
       - firefox
       - firefox-langpacks
