@@ -46,13 +46,13 @@ modules:
         - firefox-langpacks
         - fedora-logos
         - fedora-chromium-config
-        - fedora-chromium-config-gnome
         - fedora-flathub-remote
     optfix:
       - zen
     repos:
       files:
         - https://repo.secureblue.dev/secureblue.repo
+        - https://download.docker.com/linux/fedora/docker-ce.repo
       copr:
         - sneexy/zen-browser
         - secureblue/trivalent
@@ -64,8 +64,6 @@ modules:
       packages:
         - sassc
         - gtk-murrine-engine
-        - qt5-qtwayland
-        - qt6-qtwayland 
         - fzf
         - micro
         - polkit
@@ -79,12 +77,14 @@ modules:
         - trivalent-subresource-filter
         - vim
         - neovim
+        - tree-sitter-cli
         - python3-neovim
         - git
         - ripgrep
         - lsd
         - bat
         - fd-find
+        - qt6ct
         # Network
         - openssl
         - network-manager-applet
@@ -106,15 +106,6 @@ modules:
         - dbus-daemon
         # File Manager
         - yazi
-        # Multimedia
-        - gstreamer1-plugin-vaapi
-        - gstreamer1-plugin-libav
-        - gstreamer1-plugins-bad-free-extras
-        - gstreamer1-plugins-bad-freeworld
-        - gstreamer1-plugins-ugly
-        - gstreamer1-vaapi
-        - libheif
-        - libheif-freeworld
         # Graphics
         - vulkan-validation-layers
         - vulkan-tools
@@ -122,11 +113,13 @@ modules:
         - podman-compose
         - podman-tui
         - podmansh
+        - docker
+        - docker-compose
         - docker-ce
         - docker-ce-cli
+        - containerd.io
         - docker-buildx-plugin
         - docker-compose-plugin
-        - containerd.io
         # Virtualization
         - qemu-char-spice
         - qemu-device-display-virtio-gpu
@@ -140,6 +133,11 @@ modules:
         - virt-manager
         - libvirt
         - libvirt-nss
+        - libvirt-daemon-driver-network
+        - libvirt-daemon-driver-nodedev 
+        - libvirt-daemon-driver-qemu 
+        - libvirt-daemon-driver-storage-core 
+        - fastfetch
         # Util
         - p7zip
         # Shell
