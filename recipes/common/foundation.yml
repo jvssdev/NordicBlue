@@ -92,7 +92,6 @@ modules:
         - sneexy/zen-browser
         - secureblue/trivalent
         - scottames/ghostty
-        - wef/cliphist
         - lihaohong/yazi
     install:
       allow-erasing: true

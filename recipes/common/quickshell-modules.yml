@@ -4,6 +4,7 @@ modules:
       copr:
         - errornointernet/quickshell
         - heus-sueh/packages
+        - wef/cliphist
     install:
       packages:
         - quickshell-git
