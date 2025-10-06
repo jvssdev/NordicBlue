@@ -1,7 +1,5 @@
 modules:
   - type: dnf
-    optfix:
-      - zen
     repos:
       copr:
         - yalter/niri

@@ -1,0 +1,18 @@
+modules:
+  - type: dnf
+    repos:
+      copr:
+        - errornointernet/quickshell
+        - heus-sueh/packages
+    install:
+      packages:
+        - quickshell-git
+        - brightnessctl
+        - matugen
+        - gammastep
+        - cliphist
+        - wl-clipboard
+
+  - type: script
+    scripts:
+       - installDMS.sh

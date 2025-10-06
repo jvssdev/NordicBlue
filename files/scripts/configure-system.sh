@@ -4,13 +4,7 @@ set -oue pipefail
 
 set -eux
 
-# Install Material Symbols font
-mkdir -p /usr/local/share/fonts
-curl -L "https://github.com/google/material-design-icons/raw/master/variablefont/MaterialSymbolsRounded%5BFILL%2CGRAD%2Copsz%2Cwght%5D.ttf" -o /usr/local/share/fonts/MaterialSymbolsRounded.ttf
 
-
-# Install dgop
-sudo sh -c "curl -L https://github.com/AvengeMedia/dgop/releases/latest/download/dgop-linux-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').gz | gunzip | tee /usr/local/bin/dgop > /dev/null && chmod +x /usr/local/bin/dgop"
 
 # Install secureblue Trivalent SELinux policy
 echo "Installing secureblue Trivalent SELinux policy"
