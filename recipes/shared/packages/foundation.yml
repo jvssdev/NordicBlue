@@ -105,6 +105,7 @@ modules:
           - pamixer
           - pulseaudio-utils
           # System
+          - just
           - dbus-tools
           - xdg-user-dirs
           - dbus-daemon
