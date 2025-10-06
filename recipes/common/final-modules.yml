@@ -1,7 +1,7 @@
 modules:
   - type: script
     scripts:
-      - config-for-trvalent.sh
+      - config-for-trivalent.sh
       - installanydesk.sh
       - configure-system.sh
       - removeunusedrepos.sh

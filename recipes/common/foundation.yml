@@ -71,13 +71,7 @@ modules:
             new: libfdk-aac
           - old: libavcodec-free
             new: libavcodec
-      # Workaround OpenCL bug
-      # https://github.com/ublue-os/main/pull/692
-      - from-repo: fedora
-        packages:
-          - old: OpenCL-ICD-Loader
-            new: ocl-icd
-
+      
   - type: dnf
     remove:
       packages:
@@ -106,10 +100,6 @@ modules:
       packages:
         - jetbrains-mono-fonts
         - fira-code-fonts
-        - google-noto-sans-balinese-fonts
-        - google-noto-sans-cjk-fonts
-        - google-noto-sans-javanese-fonts
-        - google-noto-sans-sundanese-fonts
         - sassc
         - gtk-murrine-engine
         - qt5-qtwayland
