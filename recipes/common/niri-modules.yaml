@@ -12,8 +12,8 @@ modules:
         - gnome-keyring
         - xwayland-satellite
         - xsettingsd
-    exclude:
-       - alacritty
+      exclude:
+        - alacritty
   - type: files
     files:
       - source: system/niri
