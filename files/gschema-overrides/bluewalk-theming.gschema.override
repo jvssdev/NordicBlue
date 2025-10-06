@@ -1,0 +1,6 @@
+[org.gnome.desktop.interface]
+gtk-theme='Colloid'
+color-scheme='prefer-dark'
+icon-theme='Colloid-Dark'
+cursor-theme-name=bibata-modern-ice
+cursor-theme-size=24

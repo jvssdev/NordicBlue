@@ -1,0 +1,7 @@
+modules:
+    - type: script
+      scripts:
+          - installanydesk.sh
+          - configure-system.sh
+          - removeunusedrepos.sh
+          - regenerateinitramfs.sh

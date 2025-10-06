@@ -61,8 +61,6 @@ modules:
           - mesa-vulkan-drivers
 
 
-
-
   - type: dnf
     optfix:
       - zen
@@ -97,6 +95,7 @@ modules:
         - vim
         - neovim
         - python3-neovim
+        - git
         # Network
         - openssl
         - network-manager-applet
@@ -154,6 +153,14 @@ modules:
         - p7zip
         # Shell
         - zsh
+    remove:
+      - firefox
+      - firefox-langpacks
+      - fedora-logos
+      - fedora-chromium-config
+      - fedora-chromium-config-gnome
+      - fedora-flathub-remote
+
 
   - repo: fedora-multimedia
     packages:
@@ -176,20 +183,17 @@ modules:
         packages:
           - old: OpenCL-ICD-Loader
             new: ocl-icd
+
   - type: dnf
     install:
       packages:
         - repo: fedora-multimedia
           packages:
             - ffmpeg-libs
-    remove:
-      - firefox
-      - firefox-langpacks
-      - fedora-logos
-      - fedora-chromium-config
-      - fedora-chromium-config-gnome
-      - fedora-flathub-remote
-      - fedora-third-party
+
+  - type: gschema-overrides
+    include:
+        - bluewalk-theming.gschema.override
 
   - type: files
     files:
@@ -197,10 +201,6 @@ modules:
         destination: /usr
       - source: system/etc
         destination: /etc
-
-  - type: gschema-overrides
-    include:
-        - chronos-theming.gschema.override
 
   - type: script
     scripts:
