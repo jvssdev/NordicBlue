@@ -2,8 +2,6 @@ modules:
   - type: script
     scripts:
       - addbrewjustimport.sh
-      - installsignedkernel.sh
-      - ensureautoupdates.sh
       - installanydesk.sh
       - removeunusedrepos.sh
       - regenerateinitramfs.sh
