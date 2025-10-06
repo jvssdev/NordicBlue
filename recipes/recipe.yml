@@ -12,9 +12,9 @@ image-version: latest
 modules:
   - from-file: common/foundation.yml
 
-  - from-file: common/niri-modules.yaml
+  - from-file: common/niri-modules.yml
 
-  - from-file: common/quickshell-modules.yaml
+  - from-file: common/quickshell-modules.yml
 
   - from-file: common/default-flatpaks.yml
 
