@@ -47,6 +47,10 @@ modules:
         - repo: fedora-multimedia
           packages:
             - libheif
+            - intel-vaapi-driver
+            - libva-utils
+            - heif-pixbuf-loader
+            - pipewire-libs-extra
     replace:
       - from-repo: fedora-multimedia
         packages:
@@ -61,7 +65,18 @@ modules:
           - mesa-libgbm
           - mesa-va-drivers
           - mesa-vulkan-drivers
-
+          - old: ffmpeg-free
+            new: ffmpeg
+          - old: libfdk-aac-free
+            new: libfdk-aac
+          - old: libavcodec-free
+            new: libavcodec
+      # Workaround OpenCL bug
+      # https://github.com/ublue-os/main/pull/692
+      - from-repo: fedora
+        packages:
+          - old: OpenCL-ICD-Loader
+            new: ocl-icd
 
   - type: dnf
     remove:
@@ -179,28 +194,6 @@ modules:
         - zsh
 
       
-  - repo: fedora-multimedia
-    packages:
-            - intel-vaapi-driver
-            - libva-utils
-            - heif-pixbuf-loader
-            - pipewire-libs-extra
-    replace:
-      - from-repo: fedora-multimedia
-        packages:
-          - old: ffmpeg-free
-            new: ffmpeg
-          - old: libfdk-aac-free
-            new: libfdk-aac
-          - old: libavcodec-free
-            new: libavcodec
-      # Workaround OpenCL bug
-      # https://github.com/ublue-os/main/pull/692
-      - from-repo: fedora
-        packages:
-          - old: OpenCL-ICD-Loader
-            new: ocl-icd
-
   - type: dnf
     install:
       packages:
@@ -231,4 +224,3 @@ modules:
 
 
   - type: signing
-
