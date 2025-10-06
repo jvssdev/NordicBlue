@@ -4,5 +4,4 @@
               - greetd-boot.service
               - greetd.service
               - xwayland-satellite.service
-        
-
+              - flatpak-setup-gtk-theme.service
