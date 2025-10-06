@@ -79,6 +79,8 @@ modules:
       packages:
         - jetbrains-mono-fonts
         - fira-code-fonts
+        - sassc
+        - gtk-murrine-engine
         - qt5ct
         - qt6ct
         - fzf
@@ -191,6 +193,12 @@ modules:
           packages:
             - ffmpeg-libs
 
+
+  - type: script
+    scripts:
+        - settheming.sh
+
+
   - type: gschema-overrides
     include:
         - bluewalk-theming.gschema.override
@@ -205,4 +213,7 @@ modules:
   - type: script
     scripts:
         - addbrewjustimport.sh
+
+
+  - type: signing
 
