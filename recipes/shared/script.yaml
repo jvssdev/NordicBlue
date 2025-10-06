@@ -3,9 +3,7 @@ modules:
     scripts:
       - addbrewjustimport.sh
       - installsignedkernel.sh
-      - installandroidudev.sh
       - ensureautoupdates.sh
-      - fixupstreamicdloaderbug.sh
       - installanydesk.sh
       - removeunusedrepos.sh
       - regenerateinitramfs.sh
