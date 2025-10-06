@@ -7,7 +7,7 @@ description: My personal Fedora-based OSTree image with a custom desktop environ
 
 base-image: quay.io/fedora-ostree-desktops/base-atomic
 
-image-version: latest
+image-version: 42
 
 modules:
   - from-file: common/foundation.yml
