@@ -62,6 +62,16 @@ modules:
 
 
   - type: dnf
+    remove:
+      packages:
+        - default-fonts-cjk-sans
+        - google-noto-sans-cjk-vf-fonts
+        - firefox
+        - firefox-langpacks
+        - fedora-logos
+        - fedora-chromium-config
+        - fedora-chromium-config-gnome
+        - fedora-flathub-remote
     optfix:
       - zen
     repos:
@@ -79,6 +89,10 @@ modules:
       packages:
         - jetbrains-mono-fonts
         - fira-code-fonts
+        - google-noto-sans-balinese-fonts
+        - google-noto-sans-cjk-fonts
+        - google-noto-sans-javanese-fonts
+        - google-noto-sans-sundanese-fonts
         - sassc
         - gtk-murrine-engine
         - qt5-qtwayland
@@ -157,15 +171,8 @@ modules:
         - p7zip
         # Shell
         - zsh
-    remove:
-      - firefox
-      - firefox-langpacks
-      - fedora-logos
-      - fedora-chromium-config
-      - fedora-chromium-config-gnome
-      - fedora-flathub-remote
 
-
+      
   - repo: fedora-multimedia
     packages:
             - intel-vaapi-driver
