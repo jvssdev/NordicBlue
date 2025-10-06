@@ -12,9 +12,7 @@ modules:
         - gnome-keyring
         - xwayland-satellite
         - xsettingsd
-        - fuzzel
-    remove:
-      packages:
+    exclude:
        - alacritty
   - type: files
     files:

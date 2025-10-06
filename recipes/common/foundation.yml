@@ -22,6 +22,7 @@ modules:
       copr:
         - ublue-os/packages
     install:
+      packages:
       - ublue-os-udev-rules
       - ublue-os-update-services
       - ublue-os-signing
@@ -29,6 +30,7 @@ modules:
       - ublue-os-just
       - ublue-brew
       - ublue-os-libvirt-workarounds
+      - bazaar
 
   - type: script
     scripts:
@@ -112,6 +114,10 @@ modules:
         - neovim
         - python3-neovim
         - git
+        - ripgrep
+        - lsd
+        - bat
+        - fd-find
         # Network
         - openssl
         - network-manager-applet
