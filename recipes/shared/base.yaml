@@ -1,6 +1,4 @@
 modules:
-  - from-file: shared/files.yml
-
   - from-file: packages/foundation.yml
 
   - from-file: shared/script.yml

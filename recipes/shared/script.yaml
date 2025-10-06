@@ -1,7 +1,6 @@
 modules:
   - type: script
     scripts:
-      - addbrewjustimport.sh
       - installanydesk.sh
       - removeunusedrepos.sh
       - regenerateinitramfs.sh

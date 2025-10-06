@@ -190,3 +190,19 @@ modules:
       - fedora-chromium-config-gnome
       - fedora-flathub-remote
       - fedora-third-party
+
+  - type: files
+    files:
+      - source: system/usr
+        destination: /usr
+      - source: system/etc
+        destination: /etc
+
+  - type: gschema-overrides
+    include:
+        - chronos-theming.gschema.override
+
+  - type: script
+    scripts:
+        - addbrewjustimport.sh
+
