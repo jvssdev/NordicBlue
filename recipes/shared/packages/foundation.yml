@@ -72,7 +72,7 @@ modules:
         - secureblue/trivalent
         - scottames/ghostty
         - wef/cliphist
-      
+        - lihaohong/yazi
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -81,8 +81,8 @@ modules:
         - fira-code-fonts
         - sassc
         - gtk-murrine-engine
-        - qt5ct
-        - qt6ct
+        - qt5-qtwayland
+        - qt6-qtwayland 
         - fzf
         - micro
         - polkit
@@ -117,6 +117,8 @@ modules:
         - dbus-tools
         - xdg-user-dirs
         - dbus-daemon
+        # File Manager
+        - yazi
         # Multimedia
         - gstreamer1-plugin-vaapi
         - gstreamer1-plugin-libav
