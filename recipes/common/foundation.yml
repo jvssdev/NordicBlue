@@ -5,10 +5,10 @@ modules:
       - COPY --from=ghcr.io/ublue-os/akmods:main-42 /kernel-rpms /tmp/rpms/kernel
       - RUN find /tmp/rpms
       - RUN rpm -q ublue-os-akmods-addons || rpm-ostree install /tmp/rpms/ublue-os/ublue-os-akmods-addons*.rpm
+  
   - type: script
     scripts:
-     - installsignedkernel.sh
-
+      - installsignedkernel.sh
 
   - type: dnf
     install:
@@ -16,21 +16,20 @@ modules:
         - just
         - powerstat
 
-
   - type: dnf
     repos:
       copr:
         - ublue-os/packages
     install:
       packages:
-      - ublue-os-udev-rules
-      - ublue-os-update-services
-      - ublue-os-signing
-      - ublue-os-luks
-      - ublue-os-just
-      - ublue-brew
-      - ublue-os-libvirt-workarounds
-      - bazaar
+        - ublue-os-udev-rules
+        - ublue-os-update-services
+        - ublue-os-signing
+        - ublue-os-luks
+        - ublue-os-just
+        - ublue-brew
+        - ublue-os-libvirt-workarounds
+        - bazaar
 
   - type: script
     scripts:
@@ -38,40 +37,6 @@ modules:
       - ensureautoupdates.sh
       - fixupstreamicdloaderbug.sh
 
-  - type: dnf
-    repos:
-      nonfree: negativo17
-    install:
-      packages:
-        - libopenjph 
-        - repo: fedora-multimedia
-          packages:
-            - libheif
-            - intel-vaapi-driver
-            - libva-utils
-            - heif-pixbuf-loader
-            - pipewire-libs-extra
-    replace:
-      - from-repo: fedora-multimedia
-        packages:
-          - libva
-          - libva-intel-media-driver
-          - intel-gmmlib
-          - intel-mediasdk
-          - mesa-dri-drivers
-          - mesa-filesystem
-          - mesa-libEGL
-          - mesa-libGL
-          - mesa-libgbm
-          - mesa-va-drivers
-          - mesa-vulkan-drivers
-          - old: ffmpeg-free
-            new: ffmpeg
-          - old: libfdk-aac-free
-            new: libfdk-aac
-          - old: libavcodec-free
-            new: libavcodec
-      
   - type: dnf
     remove:
       packages:
@@ -97,8 +62,6 @@ modules:
       allow-erasing: true
       install-weak-deps: false
       packages:
-        - jetbrains-mono-fonts
-        - fira-code-fonts
         - sassc
         - gtk-murrine-engine
         - qt5-qtwayland
@@ -182,23 +145,48 @@ modules:
         # Shell
         - zsh
 
-      
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - FiraCode
+        - JetBrainsMono
+        - NerdFontsSymbolsOnly
+      google-fonts:
+        - Roboto
+        - Open Sans
+          
+  - type: script
+    scripts:
+      - installproprietarypackages.sh
+
   - type: dnf
     install:
       packages:
-        - repo: fedora-multimedia
-          packages:
-            - ffmpeg-libs
-
+        - heif-pixbuf-loader
+        - ffmpeg
+        - ffmpeg-libs
+        - ffmpegthumbnailer
+        - pipewire-libs-extra
+        - libfdk-aac
+        - gstreamer1-plugins-ugly
+    remove:
+      packages:
+        - gstreamer1-plugins-ugly-free
+        - fdk-aac-free
+        - ffmpeg-free
+        - libavcodec-free
+        - libavdevice-free
+        - libavfilter-free
+        - libavformat-free
+        - libavutil-free
+        - libpostproc-free
+        - libswresample-free
+        - libswscale-free
 
   - type: script
     scripts:
-        - settheming.sh
-
-
-  - type: gschema-overrides
-    include:
-        - bluewalk-theming.gschema.override
+      - installrpmfusion.sh
+      - removeunusedrepos.sh
 
   - type: files
     files:
@@ -209,7 +197,14 @@ modules:
 
   - type: script
     scripts:
-        - addbrewjustimport.sh
+      - settheming.sh
 
+  - type: gschema-overrides
+    include:
+      - bluewalk-theming.gschema.override
+
+  - type: script
+    scripts:
+      - addbrewjustimport.sh
 
   - type: signing
