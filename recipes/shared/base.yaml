@@ -7,7 +7,7 @@ modules:
 
   - from-file: shared/script.yml
 
-  - from-file: shared/gschema-overrides.yml
+  - from-file: shared/niri-modules.yaml
 
   - from-file: shared/default-flatpaks.yml
 

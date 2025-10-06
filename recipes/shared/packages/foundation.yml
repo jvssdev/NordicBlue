@@ -43,8 +43,6 @@ modules:
       files:
         - https://repo.secureblue.dev/secureblue.repo
       copr:
-        - yalter/niri
-        - ulysg/xwayland-satellite
         - errornointernet/quickshell
         - sneexy/zen-browser
         - secureblue/trivalent
@@ -85,13 +83,6 @@ modules:
       allow-erasing: true
       install-weak-deps: false
       packages:
-        # Desktop 
-        - niri
-        - xdg-desktop-portal-gtk
-        - xdg-desktop-portal-gnome
-        - gnome-keyring
-        - xwayland-satellite
-        - xsettingsd
         - quickshell-git
         - brightnessctl
         - jetbrains-mono-fonts
@@ -176,7 +167,6 @@ modules:
     remove:
       - firefox
       - firefox-langpacks
-      - alacritty
       - fedora-logos
       - fedora-chromium-config
       - fedora-chromium-config-gnome

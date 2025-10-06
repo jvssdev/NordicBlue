@@ -1,0 +1,22 @@
+modules:
+  - type: dnf
+    optfix:
+      - zen
+    repos:
+      copr:
+        - yalter/niri
+        - ulysg/xwayland-satellite
+    install:
+      packages:
+        - niri
+        - xdg-desktop-portal-gtk
+        - xdg-desktop-portal-gnome
+        - gnome-keyring
+        - xwayland-satellite
+        - fuzzel
+    remove:
+      - alacritty
+  - type: files
+    files:
+      - source: system/niri
+        destination: /
