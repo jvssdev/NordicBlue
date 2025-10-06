@@ -1,8 +1,8 @@
 modules:
-    - type: script
-      scripts:
-          - config-for-trvalent.sh
-          - installanydesk.sh
-          - configure-system.sh
-          - removeunusedrepos.sh
-          - regenerateinitramfs.sh
+  - type: script
+    scripts:
+      - config-for-trvalent.sh
+      - installanydesk.sh
+      - configure-system.sh
+      - removeunusedrepos.sh
+      - regenerateinitramfs.sh

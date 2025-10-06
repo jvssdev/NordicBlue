@@ -1,7 +1,8 @@
-- type: systemd
-      system:
-            enabled:
-              - greetd-boot.service
-              - greetd.service
-              - xwayland-satellite.service
-              - flatpak-setup-gtk-theme.service
+modules:
+  - type: systemd
+    system:
+      enabled:
+        - greetd-boot.service
+        - greetd.service
+        - xwayland-satellite.service
+        - flatpak-setup-gtk-theme.service
