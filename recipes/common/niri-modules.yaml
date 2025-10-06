@@ -11,6 +11,7 @@ modules:
         - xdg-desktop-portal-gnome
         - gnome-keyring
         - xwayland-satellite
+        - xsettingsd
         - fuzzel
     remove:
       packages:
