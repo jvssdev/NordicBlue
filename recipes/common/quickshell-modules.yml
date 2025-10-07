@@ -4,7 +4,7 @@ modules:
       copr:
         - errornointernet/quickshell
         - heus-sueh/packages
-        - wef/cliphist
+        - alternateved/cliphist
     install:
       packages:
         - quickshell-git
@@ -13,6 +13,7 @@ modules:
         - gammastep
         - cliphist
         - wl-clipboard
+        - cava
 
   - type: script
     scripts:

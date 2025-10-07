@@ -83,7 +83,12 @@ modules:
         - lsd
         - bat
         - fd-find
+        - qt5ct 
         - qt6ct
+        - mpv
+        - mpv-libs
+        - playerctl
+        - mako
         # Network
         - openssl
         - network-manager-applet
@@ -101,6 +106,7 @@ modules:
         - xdg-user-dirs
         - dbus-daemon
         # File Manager
+        - nautilus
         - yazi
         # Graphics
         - vulkan-validation-layers
@@ -134,6 +140,7 @@ modules:
         - fastfetch
         # Util
         - p7zip
+        - syncthing
         # Shell
         - zsh
 
