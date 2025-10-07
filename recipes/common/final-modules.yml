@@ -3,6 +3,5 @@ modules:
     scripts:
       - config-for-trivalent.sh
       - installanydesk.sh
-      - configure-system.sh
       - removeunusedrepos.sh
       - regenerateinitramfs.sh
