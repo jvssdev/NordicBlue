@@ -17,7 +17,7 @@ modules:
         - alacritty
 
   - type: systemd
-    system:
+    user:
       enabled:
         - xwayland-satellite.service
 
