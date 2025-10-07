@@ -134,6 +134,12 @@ environment {
   QT_QPA_PLATFORMTHEME_QT6 "gtk3"
   TERMINAL "ghostty"
 }
+
+cursor {
+        xcursor-theme "Bibata-Modern-Ice"
+        xcursor-size 24
+}
+
 hotkey-overlay {
     skip-at-startup
 }
