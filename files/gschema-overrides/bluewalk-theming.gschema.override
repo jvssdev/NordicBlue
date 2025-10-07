@@ -2,10 +2,8 @@
 gtk-theme='Colloid'
 color-scheme='prefer-dark'
 icon-theme='Colloid-Dark'
+cursor-theme='Bibata-Modern-Ice'
+cursor-size=24
 
 [org.gnome.desktop.wm.preferences]
 theme='Colloid'
-
-[org.gnome.desktop.peripherals.mouse]
-cursor-theme='Bibata-Modern-Ice'
-cursor-size=24
