@@ -11,13 +11,8 @@ image-version: 42
 
 modules:
   - from-file: common/foundation.yml
-
   - from-file: common/niri-modules.yml
-
   - from-file: common/quickshell-modules.yml
-
   - from-file: common/default-flatpaks.yml
-
   - from-file: common/systemd.yml
-
   - from-file: common/final-modules.yml
