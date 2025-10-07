@@ -62,56 +62,48 @@ modules:
       allow-erasing: true
       install-weak-deps: false
       packages:
-        - sassc
-        - gtk-murrine-engine
-        - fzf
-        - micro
-        - zen-browser
-        - ghostty
-        - distrobox
-        - greetd
-        - tuigreet
-        - greetd-selinux
+        # Browsers
         - trivalent
         - trivalent-subresource-filter
+        - zen-browser
+        # Terminal
+        - ghostty
+        # Shell
+        - zsh
+        # Editor
         - vim
         - neovim
         - tree-sitter-cli
         - python3-neovim
-        - git
-        - ripgrep
-        - lsd
-        - bat
-        - fd-find
-        - qt5ct 
-        - qt6ct
-        - mpv
-        - mpv-libs
-        - playerctl
-        - mako
+        # Greeter 
+        - greetd
+        - tuigreet
+        - greetd-selinux
         # Network
         - openssl
         - network-manager-applet
         - NetworkManager-openvpn
-        - NetworkManager-openvpn-gnome
         - NetworkManager-openconnect
-        - NetworkManager-openconnect-gnome
         - firewall-config
         - fprintd-pam
         # Audio
         - pavucontrol
         - pamixer
+        # Video
+        - mpv
+        - mpv-libs
         # System
         - dbus-tools
         - xdg-user-dirs
         - dbus-daemon
-        # File Manager
+        # File Managers
         - nautilus
         - yazi
         # Graphics
         - vulkan-validation-layers
         - vulkan-tools
         # Container
+        - distrobox
         - podman-compose
         - podman-tui
         - podmansh
@@ -137,12 +129,22 @@ modules:
         - libvirt-daemon-driver-nodedev 
         - libvirt-daemon-driver-qemu 
         - libvirt-daemon-driver-storage-core 
-        - fastfetch
         # Util
+        - fzf
+        - fastfetch
         - p7zip
         - syncthing
-        # Shell
-        - zsh
+        - git
+        - ripgrep
+        - lsd
+        - bat
+        - fd-find
+        - sassc
+        - gtk-murrine-engine
+        - qt5ct 
+        - qt6ct
+        - playerctl
+        - mako
 
   - type: fonts
     fonts:

@@ -3,7 +3,7 @@
   
 name: bluewalk
 
-description: My personal Fedora-based OSTree image with a custom desktop environment and tools.
+description: My personal Fedora-based OSTree image with Niri, DankMaterialShell and Secureblue Trivalent selinux policy.
 
 base-image: quay.io/fedora-ostree-desktops/base-atomic
 
