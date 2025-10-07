@@ -15,6 +15,12 @@ modules:
         - fuzzel
       exclude:
         - alacritty
+
+  - type: systemd
+    system:
+      enabled:
+        - xwayland-satellite.service
+
   - type: files
     files:
       - source: system/niri
