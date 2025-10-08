@@ -36,6 +36,7 @@ modules:
       - installandroidudev.sh
       - ensureautoupdates.sh
       - fixupstreamicdloaderbug.sh
+      - addimageinfo.sh
 
   - type: dnf
     remove:
@@ -58,6 +59,7 @@ modules:
         - secureblue/trivalent
         - scottames/ghostty
         - lihaohong/yazi
+        - che/zed
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -75,6 +77,7 @@ modules:
         - neovim
         - tree-sitter-cli
         - python3-neovim
+        - zed
         # Greeter 
         - greetd
         - tuigreet
@@ -113,9 +116,11 @@ modules:
         - docker-buildx-plugin
         - docker-compose-plugin
         # Virtualization
+        - qemu-audio-spice
         - qemu-char-spice
         - qemu-device-display-virtio-gpu
         - qemu-device-display-virtio-vga
+        - qemu-device-display-qxl
         - qemu-device-usb-redirect
         - qemu-img
         - qemu-system-x86-core
@@ -145,6 +150,9 @@ modules:
         - qt6ct
         - playerctl
         - mako
+        - mediainfo
+        - alsa-firmware
+        - ddcutil
 
   - type: fonts
     fonts:
@@ -207,7 +215,8 @@ modules:
   - type: systemd
     system:
       enabled:
-        - greetd.service  
+        - greetd-boot.service
+        - greetd.service
     user:
       enabled:
         - flatpak-setup-gtk-theme.service
