@@ -96,6 +96,7 @@ modules:
         - mpv
         - mpv-libs
         # System
+        - libva-utils
         - dbus-tools
         - xdg-user-dirs
         - dbus-daemon
@@ -176,7 +177,6 @@ modules:
         - ffmpeg
         - ffmpeg-libs
         - ffmpegthumbnailer
-        - pipewire-libs-extra
         - libfdk-aac
         - gstreamer1-plugins-ugly
     remove:
