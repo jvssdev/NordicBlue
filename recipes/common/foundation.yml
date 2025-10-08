@@ -125,6 +125,7 @@ modules:
         - qemu-device-display-qxl
         - qemu-device-usb-redirect
         - qemu-img
+        - qemu-kvm
         - qemu-system-x86-core
         - qemu-user-binfmt
         - qemu-user-static
@@ -218,6 +219,8 @@ modules:
       enabled:
         - greetd-boot.service
         - greetd.service
+        - libvirt-workaround.service
+        - libvirtd.service
     user:
       enabled:
         - flatpak-setup-gtk-theme.service
