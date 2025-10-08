@@ -219,7 +219,6 @@ modules:
       enabled:
         - greetd-boot.service
         - greetd.service
-        - libvirt-workaround.service
         - libvirtd.service
     user:
       enabled:
