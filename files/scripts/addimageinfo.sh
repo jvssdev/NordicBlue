@@ -18,7 +18,7 @@ IMAGE_LIKE="fedora"
 HOME_URL="https://github.com/jvssdev/BlueWalk"
 DOCUMENTATION_URL="https://github.com/jvssdev/BlueWalk"
 SUPPORT_URL="https://github.com/jvssdev/BlueWalk/issues"
-BUG_SUPPORT_URL="https://github.com/bogdandabeast/devsetup/issues"
+BUG_SUPPORT_URL="https://github.com/jvssdev/BlueWalk/issues"
 
 if grep -q "VARIANT_ID" /usr/lib/os-release; then
     sed -i "s/^VARIANT_ID=.*/VARIANT_ID=$IMAGE_NAME/" /usr/lib/os-release
