@@ -8,8 +8,8 @@ modules:
   
   - type: script
     scripts:
+      - unprotectsudo.sh
       - installsignedkernel.sh
-
   - type: dnf
     install:
       packages:
@@ -41,6 +41,9 @@ modules:
   - type: dnf
     remove:
       packages:
+        - sudo
+        - sudo-python-plugin
+        - pkexec
         - default-fonts-cjk-sans
         - google-noto-sans-cjk-vf-fonts
         - firefox
@@ -56,6 +59,7 @@ modules:
         - https://download.docker.com/linux/fedora/docker-ce.repo
       copr:
         - sneexy/zen-browser
+        - secureblue/run0edit
         - secureblue/trivalent
         - scottames/ghostty
         - lihaohong/yazi
@@ -96,6 +100,7 @@ modules:
         - mpv
         - mpv-libs
         # System
+        - run0edit
         - libva-utils
         - dbus-tools
         - xdg-user-dirs
@@ -212,7 +217,7 @@ modules:
 
   - type: gschema-overrides
     include:
-      - bluewalk-theming.gschema.override
+      - zz1-bluewalk-theming.gschema.override
 
   - type: systemd
     system:
