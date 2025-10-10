@@ -22,6 +22,8 @@ modules:
         - ublue-os/packages
     install:
       packages:
+        - zstd
+        - uupd
         - ublue-os-udev-rules
         - ublue-os-update-services
         - ublue-os-signing
@@ -34,7 +36,6 @@ modules:
   - type: script
     scripts:
       - installandroidudev.sh
-      - ensureautoupdates.sh
       - fixupstreamicdloaderbug.sh
       - addimageinfo.sh
 
@@ -64,6 +65,7 @@ modules:
         - scottames/ghostty
         - lihaohong/yazi
         - che/zed
+        - peterwu/rendezvous
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -76,6 +78,8 @@ modules:
         - ghostty
         # Shell
         - zsh
+        - zsh-autosuggestions 
+        - zsh-syntax-highlighting
         # Editor
         - vim
         - neovim
@@ -105,7 +109,7 @@ modules:
         - dbus-tools
         - xdg-user-dirs
         - dbus-daemon
-        - zstd
+        - bibata-cursor-themes
         # File Managers
         - nautilus
         - yazi
@@ -225,6 +229,7 @@ modules:
         - greetd-boot.service
         - greetd.service
         - libvirtd.service
+        - uupd.timer
     user:
       enabled:
         - flatpak-setup-gtk-theme.service

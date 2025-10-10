@@ -28,19 +28,9 @@ install_colloid_gtk() {
   echo "Colloid GTK Theme installed."
 }
 
-install_bibata_cursor() {
-  echo "Installing Bibata Cursor Theme..."
-  BIBATA_URL="https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Ice.tar.xz"
-  wget "$BIBATA_URL" -O /tmp/bibata.tar.xz
-  tar -xf /tmp/bibata.tar.xz -C "$ICON_DIR"
-  rm /tmp/bibata.tar.xz
-  echo "Bibata Cursor installed."
-}
-
 # Fix for Flatpak
 flatpak override --filesystem=xdg-config/gtk-3.0 
 flatpak override --filesystem=xdg-config/gtk-4.0
 
 install_colloid_icons
 install_colloid_gtk
-install_bibata_cursor
