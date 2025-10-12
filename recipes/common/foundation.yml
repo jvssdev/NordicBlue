@@ -110,8 +110,8 @@ modules:
         - xdg-user-dirs
         - dbus-daemon
         - bibata-cursor-themes
-        # File Managers
-        - nautilus
+        - papirus-icon-theme
+        # File Manager
         - yazi
         # Graphics
         - vulkan-validation-layers
@@ -220,10 +220,6 @@ modules:
       - source: system/etc
         destination: /etc
 
-  - type: script
-    scripts:
-      - settheming.sh
-
   - type: gschema-overrides
     include:
       - zz1-bluewalk-theming.gschema.override
@@ -235,10 +231,7 @@ modules:
         - greetd.service
         - libvirtd.service
         - uupd.timer
-    user:
-      enabled:
-        - flatpak-setup-gtk-theme.service
-
+    
   - type: script
     scripts:
       - addbrewjustimport.sh
