@@ -66,6 +66,7 @@ modules:
         - lihaohong/yazi
         - che/zed
         - peterwu/rendezvous
+        - atim/starship
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -77,9 +78,8 @@ modules:
         # Terminal
         - ghostty
         # Shell
+        - starship
         - zsh
-        - zsh-autosuggestions 
-        - zsh-syntax-highlighting
         # Editor
         - vim
         - neovim
@@ -161,10 +161,11 @@ modules:
         - qt5ct 
         - qt6ct
         - playerctl
-        - mako
         - mediainfo
         - alsa-firmware
         - ddcutil
+        - btop
+        - mingw-poppler
 
   - type: fonts
     fonts:
@@ -176,7 +177,11 @@ modules:
         - Roboto
         - Open Sans
         - InterVariable
+
   - type: script
+    snippets:
+    - "ya pkg add Rolv-Apneseth/starship"
+    - "ya pkg add BennyOe/tokyo-night"
     scripts:
       - installproprietarypackages.sh
 
@@ -237,5 +242,10 @@ modules:
   - type: script
     scripts:
       - addbrewjustimport.sh
+
+  - type: brew
+    nofile-limits: true
+    brew-analytics: false
+    auto-upgrade: false
 
   - type: signing
