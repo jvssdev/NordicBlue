@@ -117,7 +117,6 @@ modules:
         - vulkan-validation-layers
         - vulkan-tools
         # Container
-        - distrobox
         - podman-compose
         - podman-tui
         - podmansh
@@ -165,7 +164,7 @@ modules:
         - alsa-firmware
         - ddcutil
         - btop
-        - mingw-poppler
+        - poppler
 
   - type: fonts
     fonts:
@@ -184,6 +183,7 @@ modules:
     - "ya pkg add BennyOe/tokyo-night"
     scripts:
       - installproprietarypackages.sh
+      - setup-yazi-default.sh
 
   - type: dnf
     install:
