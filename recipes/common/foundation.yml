@@ -59,6 +59,7 @@ modules:
         - https://repo.secureblue.dev/secureblue.repo
         - https://download.docker.com/linux/fedora/docker-ce.repo
       copr:
+        - gmaglione/podman-bootc
         - sneexy/zen-browser
         - secureblue/run0edit
         - secureblue/trivalent
@@ -116,8 +117,10 @@ modules:
         - vulkan-validation-layers
         - vulkan-tools
         # Container
+        - podman-bootc
         - podman-compose
         - podman-tui
+        - podman-machine
         - podmansh
         - docker-ce
         - docker-ce-cli
@@ -137,7 +140,10 @@ modules:
         - qemu-user-binfmt
         - qemu-user-static
         - qemu
+        - edk2-ovmf
         - virt-manager
+        - virt-v2v
+        - virt-viewer
         - libvirt
         - libvirt-nss
         - libvirt-daemon-driver-network
@@ -164,6 +170,7 @@ modules:
         - ddcutil
         - btop
         - poppler
+        - chezmoi
 
   - type: fonts
     fonts:
@@ -245,5 +252,10 @@ modules:
     nofile-limits: true
     brew-analytics: false
     auto-upgrade: false
+
+  - type: soar
+    additional-repos: true
+    auto-upgrade: true
+    upgrade-interval: '4h'
 
   - type: signing
