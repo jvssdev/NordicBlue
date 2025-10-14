@@ -89,7 +89,8 @@ modules:
         - zed
         # Greeter 
         - greetd
-        - tuigreet
+        - gtkgreet
+        - cage
         - greetd-selinux
         # Network
         - openssl
@@ -108,6 +109,8 @@ modules:
         - run0edit
         - libva-utils
         - dbus-tools
+        - polkit
+        - mate-polkit 
         - xdg-user-dirs
         - dbus-daemon
         - bibata-cursor-themes
@@ -151,7 +154,9 @@ modules:
         - libvirt-daemon-driver-qemu 
         - libvirt-daemon-driver-storage-core 
         # Util
+        - imv
         - fzf
+        - keepassxc
         - fastfetch
         - p7zip
         - syncthing
@@ -171,6 +176,7 @@ modules:
         - btop
         - poppler
         - chezmoi
+        - cava 
 
   - type: fonts
     fonts:

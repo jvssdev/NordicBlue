@@ -1,6 +1,8 @@
+# Minimal greetd config using gtkgreet under cage
 [terminal]
-vt = 1
+vt = "next"
 
 [default_session]
-command = "tuigreet --user-menu --remember --cmd niri-session"
+# -s = single client, exit cage when gtkgreet exits
+command = "cage -s -- gtkgreet"
 user = "greetd"
