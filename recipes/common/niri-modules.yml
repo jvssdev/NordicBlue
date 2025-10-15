@@ -15,23 +15,20 @@ modules:
         - fuzzel
       exclude:
         - alacritty
-
   - type: systemd
     user:
       enabled:
         - xwayland-satellite.service
-
   - type: files
     files:
       - source: system/niri
         destination: /
-
   - type: chezmoi
-  repository: "https://codeberg.org/jvssdev/dotfiles"
-  branch: "niri"
-  all-users: false 
-  run-every: '1d' 
-  wait-after-boot: '5m' 
-  disable-init: false 
-  disable-update: false 
-  file-conflict-policy: "skip" 
+    repository: "https://codeberg.org/jvssdev/dotfiles"
+    branch: "niri"
+    all-users: false 
+    run-every: '1d' 
+    wait-after-boot: '5m' 
+    disable-init: false 
+    disable-update: false 
+    file-conflict-policy: "skip"
