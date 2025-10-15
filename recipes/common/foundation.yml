@@ -68,6 +68,7 @@ modules:
         - che/zed
         - peterwu/rendezvous
         - atim/starship
+        - dejan/lazygit 
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -88,10 +89,7 @@ modules:
         - python3-neovim
         - zed
         # Greeter 
-        - greetd
-        - gtkgreet
-        - cage
-        - greetd-selinux
+        - sddm
         # Network
         - openssl
         - network-manager-applet
@@ -177,6 +175,7 @@ modules:
         - poppler
         - chezmoi
         - cava 
+        - lazygit
 
   - type: fonts
     fonts:
@@ -192,7 +191,7 @@ modules:
   - type: script
     snippets:
     - "ya pkg add Rolv-Apneseth/starship"
-    - "ya pkg add BennyOe/tokyo-night"
+    - "ya pkg add AdithyanA2005/nord"
     scripts:
       - installproprietarypackages.sh
       - setup-yazi-default.sh
@@ -243,8 +242,6 @@ modules:
   - type: systemd
     system:
       enabled:
-        - greetd-boot.service
-        - greetd.service
         - libvirtd.service
         - uupd.timer
     user:
