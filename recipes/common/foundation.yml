@@ -89,7 +89,9 @@ modules:
         - python3-neovim
         - zed
         # Greeter 
-        - sddm
+        - greetd
+        - tuigreet
+        - greetd-selinux
         # Network
         - openssl
         - network-manager-applet
@@ -242,6 +244,7 @@ modules:
   - type: systemd
     system:
       enabled:
+        - greetd.service
         - libvirtd.service
         - uupd.timer
     user:
