@@ -1,14 +1,15 @@
 modules:
-     - type: script
-       snippets:
-     - |
-        echo -e "\e[1m\e[38;5;214mInstalling 'am' AppImage manager from 'main' branch\e[0m"      
+  - type: script
+    snippets:
+      - |
+        echo -e "\e[1m\e[38;5;214mInstalling 'am' AppImage manager from 'main' branch\e[0m"
       - "curl -fLs --create-dirs https://github.com/ivan-hc/AM/archive/refs/heads/main.zip -o /tmp/am.zip && mkdir -p /tmp/am && unzip -q /tmp/am.zip -d /tmp/am/ && cp /tmp/am/AM-main/APP-MANAGER /usr/bin/am && chmod +x /usr/bin/am && mkdir -p /usr/lib/am/modules/ && cp /tmp/am/AM-main/modules/* /usr/lib/am/modules/ && chmod +x /usr/lib/am/modules/* && rm -r /tmp/am/ && rm /tmp/am.zip"
- 
+      
       # Disable 'am' notifications on updates by default
       - |
         echo -e "\e[1;31mDisabling 'am' update notifications\e[0m"
       - "mkdir -p /etc/skel/.local/share/AM/ && touch /etc/skel/.local/share/AM/disable-notifications"
+      
       # Add auto-update systemd timer for AM
       - |
         echo -e "\e[1m\e[38;5;214mWriting & enabling 'am' AppImages auto-update timer\e[0m"
@@ -17,16 +18,19 @@ modules:
       - |
         echo -e "[Unit]\nDescription=AM Automatic Update Trigger\n\n[Timer]\nRandomizedDelaySec=10m\nOnBootSec=2m\nOnCalendar=*-*-* 4:00:00\nPersistent=true\n\n[Install]\nWantedBy=timers.target" > /usr/lib/systemd/user/am-update.timer
       - systemctl --global enable am-update.timer
+      
       # Install appimageupdatetool for AppImage diff updates
       - |
         echo -e "\e[1m\e[38;5;214mInstalling 'appimageupdatetool' for AppImage diff updates\e[0m"
       - "VER=$(basename $(curl -Ls -o /dev/null -w %{url_effective} https://github.com/pkgforge-dev/AppImageUpdate-Enhanced-Edition/releases/latest)) && curl -fLs --create-dirs https://github.com/pkgforge-dev/AppImageUpdate-Enhanced-Edition/releases/download/${VER}/appimageupdatetool+validate-x86_64.AppImage -o /usr/bin/appimageupdatetool && chmod +x /usr/bin/appimageupdatetool"
+      
       # Install 'simple-appimage-sandbox' for AppImage sandboxing
       # Downloading a script instead of the AppImage, as it's more secure for regular binaries to be sandboxed without SUID libfuse dependency that 'sas' AppImage has
       - |
         echo -e "\e[1m\e[38;5;214mInstalling 'simple-appimage-sandbox', aka 'sas' sandboxing tool for AppImages\e[0m"
       - "curl -fLs https://github.com/Samueru-sama/simple-appimage-sandbox/blob/main/sas.sh -o /usr/bin/simple-appimage-sandbox && chmod +x /usr/bin/simple-appimage-sandbox"
       - "ln -sf /usr/bin/simple-appimage-sandbox /usr/bin/sas"
+      
       # Downloading some missing dependencies for 'sas'
       - "curl -fLs https://pkgs.pkgforge.dev/dl/bincache/x86_64-linux/dwarfs/standalone/dwarfs/raw.dl -o /usr/bin/dwarfs && chmod +x /usr/bin/dwarfs"
       - "curl -fLs https://pkgs.pkgforge.dev/dl/bincache/x86_64-linux/squashfuse/nixpkgs/squashfuse/raw.dl -o /usr/bin/squashfuse && chmod +x /usr/bin/squashfuse"
