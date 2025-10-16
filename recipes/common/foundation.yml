@@ -178,6 +178,8 @@ modules:
         - chezmoi
         - cava 
         - lazygit
+        - zathura
+        - zathura-pdf-poppler
 
   - type: fonts
     fonts:
@@ -244,6 +246,7 @@ modules:
   - type: systemd
     system:
       enabled:
+        - greetd-boot.service
         - greetd.service
         - libvirtd.service
         - uupd.timer
