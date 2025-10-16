@@ -110,7 +110,7 @@ modules:
         - libva-utils
         - dbus-tools
         - polkit
-        - mate-polkit 
+        - xfce-polkit  
         - xdg-user-dirs
         - dbus-daemon
         - bibata-cursor-themes
@@ -249,6 +249,7 @@ modules:
         - uupd.timer
     user:
       enabled:
+        - xfce-polkit.service
         - flatpak-setup-gtk-theme.service
   - type: script
     scripts:
