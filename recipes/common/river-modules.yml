@@ -6,9 +6,8 @@ modules:
         - waybar
         - xdg-desktop-portal-wlr
         - xdg-desktop-portal-gtk
-        - swaylock
-        - swayidle
-        - dunst
+        - hyprlock
+        - hypridle
         - bluez
         - bluez-tools
         - blueman
@@ -18,6 +17,13 @@ modules:
         - pulseaudio-utils
         - helvum
         - fuzzel
+        - slurp
+        - swww
+        - mako
+        - wl-clipboard
+        - cliphist
+        - gammastep
+        - wleave
   - type: files
     files:
       - source: system/river

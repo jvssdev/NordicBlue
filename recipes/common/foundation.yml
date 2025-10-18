@@ -156,6 +156,7 @@ modules:
         # Util
         - imv
         - fzf
+        - wf-recorder
         - keepassxc
         - fastfetch
         - p7zip
