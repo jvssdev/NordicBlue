@@ -1,29 +1,31 @@
 modules:
   - type: dnf
+    repos:
+      copr:
+      - solopasha/hyprland
     install:
       packages:
         - river
         - waybar
         - xdg-desktop-portal-wlr
         - xdg-desktop-portal-gtk
-        - hyprlock
-        - hypridle
+        - swaylock
+        - swayidle
         - bluez
         - bluez-tools
         - blueman
-        - wireplumber
         - pipewire
         - pamixer
         - pulseaudio-utils
-        - helvum
         - fuzzel
-        - slurp
+        - satty
         - swww
         - mako
         - wl-clipboard
         - cliphist
         - gammastep
-        - wleave
+        - wlogout
+
   - type: files
     files:
       - source: system/river
