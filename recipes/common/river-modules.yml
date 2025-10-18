@@ -7,15 +7,20 @@ modules:
         - xdg-desktop-portal-gtk
         - swaylock
         - swayidle
-
+        - dunst
+        - bluez
+        - bluez-tools
+        - blueman
+        - wireplumber
+        - pipewire
+        - pamixer
+        - pulseaudio-utils
+        - helvum
+        - fuzzel
     - type: files
       files:
         - source: system/river
           destination: /
-
-    - type: script
-      scripts:
-        - setriverwaybarmodules.sh
 
     - type: chezmoi
       repository: "https://codeberg.org/jvssdev/dotfiles"

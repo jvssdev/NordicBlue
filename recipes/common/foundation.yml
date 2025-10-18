@@ -193,12 +193,8 @@ modules:
         - InterVariable
 
   - type: script
-    snippets:
-    - "ya pkg add Rolv-Apneseth/starship"
-    - "ya pkg add AdithyanA2005/nord"
     scripts:
       - installproprietarypackages.sh
-      - setup-yazi-default.sh
 
   - type: dnf
     install:
