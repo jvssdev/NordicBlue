@@ -1,33 +1,32 @@
 modules:
-    - type: dnf
-      install:
-        - river
-        - waybar
-        - xdg-desktop-portal-wlr
-        - xdg-desktop-portal-gtk
-        - swaylock
-        - swayidle
-        - dunst
-        - bluez
-        - bluez-tools
-        - blueman
-        - wireplumber
-        - pipewire
-        - pamixer
-        - pulseaudio-utils
-        - helvum
-        - fuzzel
-    - type: files
-      files:
-        - source: system/river
-          destination: /
-
-    - type: chezmoi
-      repository: "https://codeberg.org/jvssdev/dotfiles"
-      #branch: "river"
-      all-users: false 
-      run-every: '1d' 
-      wait-after-boot: '5m' 
-      disable-init: false 
-      disable-update: false 
-      file-conflict-policy: "skip"
+  - type: dnf
+    install:
+      - river
+      - waybar
+      - xdg-desktop-portal-wlr
+      - xdg-desktop-portal-gtk
+      - swaylock
+      - swayidle
+      - dunst
+      - bluez
+      - bluez-tools
+      - blueman
+      - wireplumber
+      - pipewire
+      - pamixer
+      - pulseaudio-utils
+      - helvum
+      - fuzzel
+  - type: files
+    files:
+      - source: system/river
+        destination: /
+  - type: chezmoi
+    repository: "https://codeberg.org/jvssdev/dotfiles"
+    #branch: "river"
+    all-users: false 
+    run-every: '1d' 
+    wait-after-boot: '5m' 
+    disable-init: false 
+    disable-update: false 
+    file-conflict-policy: "skip"
