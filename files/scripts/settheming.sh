@@ -18,11 +18,17 @@ install_nordzy_icons() {
 }
 
 install_nordic_gtk() {
-  echo "Installing Nordic GTK Theme (for GTK apps in COSMIC)..."
+  echo "Installing Nordic GTK Theme..."
   git clone https://github.com/EliverLara/Nordic.git /tmp/nordic-gtk
   
-  # Nordic doesn't have an install script, so we copy manually
-  cp -r /tmp/nordic-gtk/Nordic* "$THEME_DIR/"
+  # The repository root IS the theme - copy it to themes directory as "Nordic"
+  mkdir -p "$THEME_DIR/Nordic"
+  
+  # Copy all theme files from the repo to the Nordic theme directory
+  cp -r /tmp/nordic-gtk/* "$THEME_DIR/Nordic/"
+  
+  # Clean up git files that aren't needed
+  rm -rf "$THEME_DIR/Nordic/.git" "$THEME_DIR/Nordic/.github"
   
   rm -rf /tmp/nordic-gtk
   echo "Nordic GTK Theme installed."
