@@ -7,25 +7,27 @@ ICON_DIR="/usr/share/icons"
 THEME_DIR="/usr/share/themes"
 mkdir -p "$ICON_DIR" "$THEME_DIR"
 
-install_colloid_icons() {
-  echo "Installing Colloid Icon Theme..."
-  git clone https://github.com/vinceliuice/Colloid-icon-theme.git /tmp/colloid-icons
-  cd /tmp/colloid-icons
+install_nordzy_icons() {
+  echo "Installing Nordzy Icon Theme..."
+  git clone https://github.com/MolassesLover/Nordzy-icon.git /tmp/nordzy-icons
+  cd /tmp/nordzy-icons
   ./install.sh -d "$ICON_DIR"
   cd -
-  rm -rf /tmp/colloid-icons
-  echo "Colloid Icon Theme installed."
+  rm -rf /tmp/nordzy-icons
+  echo "Nordzy Icon Theme installed."
 }
 
-install_colloid_gtk() {
-  echo "Installing Colloid GTK Theme (for GTK apps in COSMIC)..."
-  git clone https://github.com/vinceliuice/Colloid-gtk-theme.git /tmp/colloid-gtk
-  cd /tmp/colloid-gtk
-  ./install.sh -d "$THEME_DIR"
-  cd -
-  rm -rf /tmp/colloid-gtk
-  echo "Colloid GTK Theme installed."
+install_nordic_gtk() {
+  echo "Installing Nordic GTK Theme (for GTK apps in COSMIC)..."
+  git clone https://github.com/EliverLara/Nordic.git /tmp/nordic-gtk
+  
+  # Nordic doesn't have an install script, so we copy manually
+  cp -r /tmp/nordic-gtk/Nordic* "$THEME_DIR/"
+  
+  rm -rf /tmp/nordic-gtk
+  echo "Nordic GTK Theme installed."
 }
+
 # Note: Flatpak overrides cannot be run during image build
 # They will be handled by a systemd user service that runs on first boot
 create_flatpak_setup_service() {
@@ -58,8 +60,8 @@ EOF
 }
 
 # Install themes
-install_colloid_icons
-install_colloid_gtk
+install_nordzy_icons
+install_nordic_gtk
 create_flatpak_setup_service
 
 echo "Theme installation complete!"

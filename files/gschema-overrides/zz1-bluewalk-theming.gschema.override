@@ -1,8 +1,9 @@
 [org.gnome.desktop.interface]
-gtk-theme='Colloid'
+gtk-theme='Nordic'
 color-scheme='prefer-dark'
-icon-theme='Colloid-Dark'
+icon-theme='Nordzy-dark'
 cursor-theme='Bibata-Modern-Ice'
 cursor-size=24
+
 [org.gnome.desktop.wm.preferences]
-theme='Colloid'
+theme='Nordic'
