@@ -1,6 +1,11 @@
 modules:
   - type: dnf
+    repos:
+      copr:
+        - solopasha/hyprland
     install:
+      allow-erasing: true
+      install-weak-deps: false
       packages:
         - river
         - xdg-desktop-portal-wlr
@@ -11,7 +16,6 @@ modules:
         - pipewire
         - pamixer
         - pulseaudio-utils
-        - fuzzel
         - swww
         - mako
         - wlogout

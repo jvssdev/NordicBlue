@@ -13,7 +13,6 @@ modules:
         - gnome-keyring
         - xwayland-satellite
         - xsettingsd
-        - fuzzel
         - dms 
 
       exclude:

@@ -154,6 +154,7 @@ modules:
         - libvirt-daemon-driver-qemu 
         - libvirt-daemon-driver-storage-core 
         # Util
+        - fuzzel
         - cliphist
         - wl-clipboard
         - gammastep
