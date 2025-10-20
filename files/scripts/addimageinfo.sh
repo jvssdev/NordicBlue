@@ -13,12 +13,12 @@ set -oue pipefail
 # BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
 # governing permissions and limitations under the License.
 
-IMAGE_PRETTY_NAME="bluewalk"
+IMAGE_PRETTY_NAME="nordicblue"
 IMAGE_LIKE="fedora"
-HOME_URL="https://github.com/jvssdev/BlueWalk"
-DOCUMENTATION_URL="https://github.com/jvssdev/BlueWalk"
-SUPPORT_URL="https://github.com/jvssdev/BlueWalk/issues"
-BUG_SUPPORT_URL="https://github.com/jvssdev/BlueWalk/issues"
+HOME_URL="https://github.com/jvssdev/NordicBlue"
+DOCUMENTATION_URL="https://github.com/jvssdev/NordicBlue"
+SUPPORT_URL="https://github.com/jvssdev/NordicBlue/issues"
+BUG_SUPPORT_URL="https://github.com/jvssdev/NordicBlue/issues"
 
 if grep -q "VARIANT_ID" /usr/lib/os-release; then
     sed -i "s/^VARIANT_ID=.*/VARIANT_ID=$IMAGE_NAME/" /usr/lib/os-release

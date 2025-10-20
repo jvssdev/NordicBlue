@@ -231,7 +231,7 @@ modules:
 
   - type: gschema-overrides
     include:
-      - zz1-bluewalk-theming.gschema.override
+      - zz1-nordicblue-theming.gschema.override
 
   - type: systemd
     system:
