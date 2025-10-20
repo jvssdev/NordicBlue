@@ -1,6 +1,5 @@
 modules:
   - type: dnf
-    repos:
     install:
       packages:
         - river
@@ -18,11 +17,12 @@ modules:
         - wlogout
         - slurp
         - grim
-
+  
   - type: files
     files:
       - source: system/river
         destination: /
+  
   - type: chezmoi
     repository: "https://codeberg.org/jvssdev/dotfiles"
     #branch: "river"
