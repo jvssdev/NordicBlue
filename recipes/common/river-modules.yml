@@ -1,12 +1,9 @@
 modules:
   - type: dnf
     repos:
-      copr:
-      - solopasha/hyprland
     install:
       packages:
         - river
-        - waybar
         - xdg-desktop-portal-wlr
         - xdg-desktop-portal-gtk
         - bluez
@@ -16,13 +13,11 @@ modules:
         - pamixer
         - pulseaudio-utils
         - fuzzel
-        - satty
         - swww
         - mako
-        - wl-clipboard
-        - cliphist
-        - gammastep
         - wlogout
+        - slurp
+        - grim
 
   - type: files
     files:

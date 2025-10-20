@@ -4,6 +4,7 @@ modules:
       copr:
         - yalter/niri
         - ulysg/xwayland-satellite
+        - avengemedia/dms 
     install:
       packages:
         - niri
@@ -13,6 +14,8 @@ modules:
         - xwayland-satellite
         - xsettingsd
         - fuzzel
+        - dms 
+
       exclude:
         - alacritty
   - type: systemd

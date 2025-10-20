@@ -68,6 +68,7 @@ modules:
         - peterwu/rendezvous
         - atim/starship
         - dejan/lazygit 
+        - alternateved/cliphist
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -153,6 +154,10 @@ modules:
         - libvirt-daemon-driver-qemu 
         - libvirt-daemon-driver-storage-core 
         # Util
+        - cliphist
+        - wl-clipboard
+        - gammastep
+        - brightnessctl
         - imv
         - fzf
         - wf-recorder
