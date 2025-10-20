@@ -177,7 +177,7 @@ modules:
   - type: script
     snippets:
     - |
-      cat > /etc/yum.repos.d/AnyDesk-Fedora.repo << 'EOF'
+      tee /etc/yum.repos.d/AnyDesk-Fedora.repo > /dev/null <<'EOF'
       [anydesk]
       name=AnyDesk Fedora - stable
       baseurl=http://rpm.anydesk.com/fedora/$basearch/
