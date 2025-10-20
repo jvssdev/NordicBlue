@@ -37,7 +37,6 @@ modules:
     scripts:
       - installandroidudev.sh
       - fixupstreamicdloaderbug.sh
-      - addimageinfo.sh
 
   - type: dnf
     remove:

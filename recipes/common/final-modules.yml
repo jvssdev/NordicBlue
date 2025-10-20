@@ -3,6 +3,7 @@ modules:
     scripts:
       - config-for-trivalent.sh
       - installanydesk.sh
+      - addimageinfo.sh
       - removeunusedrepos.sh
       - regenerateinitramfs.sh
       - remove-sudo.sh
