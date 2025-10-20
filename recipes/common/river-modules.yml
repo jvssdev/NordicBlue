@@ -9,8 +9,6 @@ modules:
         - waybar
         - xdg-desktop-portal-wlr
         - xdg-desktop-portal-gtk
-        - swaylock
-        - swayidle
         - bluez
         - bluez-tools
         - blueman
