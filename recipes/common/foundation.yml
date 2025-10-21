@@ -82,7 +82,7 @@ modules:
         # Shell
         - starship
         - zsh
-        # Editor
+        # Editors
         - vim
         - neovim
         - tree-sitter-cli
@@ -116,6 +116,17 @@ modules:
         - bibata-cursor-themes
         # File Manager
         - yazi
+        - thunar
+        - thunar-archive-plugin
+        - thunar-volman
+        - xarchiver
+        - gvfs-mtp
+        - gvfs-gphoto2
+        - gvfs-smb
+        - gvfs-nfs
+        - gvfs-fuse
+        - gvfs-archive
+        - android-tools
         # Graphics
         - vulkan-validation-layers
         - vulkan-tools
