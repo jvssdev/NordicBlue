@@ -29,7 +29,7 @@ modules:
   
   - type: chezmoi
     repository: "https://codeberg.org/jvssdev/dotfiles"
-    #branch: "river"
+    branch: "main"
     all-users: false 
     run-every: '1d' 
     wait-after-boot: '5m' 
