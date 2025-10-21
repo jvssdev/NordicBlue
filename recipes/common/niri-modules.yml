@@ -25,12 +25,3 @@ modules:
     files:
       - source: system/niri
         destination: /
-  - type: chezmoi
-    repository: "https://codeberg.org/jvssdev/dotfiles"
-    branch: "main"
-    all-users: false 
-    run-every: '1d' 
-    wait-after-boot: '5m' 
-    disable-init: false 
-    disable-update: false 
-    file-conflict-policy: "skip"
