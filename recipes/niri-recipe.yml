@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-  
+
 name: nordicblue
 
 description: My personal Fedora-based OSTree image with Niri, DankMaterialShell and Secureblue Trivalent selinux policy.
@@ -13,6 +13,5 @@ modules:
   - from-file: common/foundation.yml
   - from-file: common/niri-modules.yml
   - from-file: common/default-flatpaks.yml
-  - from-file: common/appimages-modules.yml
   - from-file: common/dotfiles-modules.yml
   - from-file: common/final-modules.yml

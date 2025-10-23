@@ -13,6 +13,5 @@ modules:
   - from-file: common/foundation.yml
   - from-file: common/river-modules.yml
   - from-file: common/default-flatpaks.yml
-  - from-file: common/appimages-modules.yml
   - from-file: common/dotfiles-modules.yml
   - from-file: common/final-modules.yml
