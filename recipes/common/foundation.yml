@@ -5,7 +5,7 @@ modules:
       - COPY --from=ghcr.io/ublue-os/akmods:main-42 /kernel-rpms /tmp/rpms/kernel
       - RUN find /tmp/rpms
       - RUN rpm -q ublue-os-akmods-addons || rpm-ostree install /tmp/rpms/ublue-os/ublue-os-akmods-addons*.rpm
-  
+
   - type: script
     scripts:
       - unprotectsudo.sh
@@ -67,12 +67,15 @@ modules:
         - che/zed
         - peterwu/rendezvous
         - atim/starship
-        - dejan/lazygit 
+        - dejan/lazygit
         - alternateved/cliphist
+        - errornointernet/quickshell
     install:
       allow-erasing: true
       install-weak-deps: false
       packages:
+        # Building block
+        - quickshell
         # Browsers
         - trivalent
         - trivalent-subresource-filter
@@ -88,7 +91,7 @@ modules:
         - tree-sitter-cli
         - python3-neovim
         - zed
-        # Greeter 
+        # Greeter
         - greetd
         - tuigreet
         - greetd-selinux
@@ -110,7 +113,7 @@ modules:
         - libva-utils
         - dbus-tools
         - polkit
-        - xfce-polkit  
+        - xfce-polkit
         - xdg-user-dirs
         - dbus-daemon
         - bibata-cursor-themes
@@ -161,9 +164,9 @@ modules:
         - libvirt
         - libvirt-nss
         - libvirt-daemon-driver-network
-        - libvirt-daemon-driver-nodedev 
-        - libvirt-daemon-driver-qemu 
-        - libvirt-daemon-driver-storage-core 
+        - libvirt-daemon-driver-nodedev
+        - libvirt-daemon-driver-qemu
+        - libvirt-daemon-driver-storage-core
         # Util
         - fuzzel
         - cliphist
@@ -179,7 +182,7 @@ modules:
         - bat
         - sassc
         - gtk-murrine-engine
-        - qt5ct 
+        - qt5ct
         - qt6ct
         - playerctl
         - mediainfo
@@ -190,6 +193,10 @@ modules:
         - lazygit
         - zathura
         - zathura-pdf-poppler
+        - rclone
+        # For qmlformat
+        - qt6-qtbase-devel
+        - qt6-qtdeclarative-devel
 
   - type: fonts
     fonts:
@@ -206,7 +213,7 @@ modules:
     scripts:
       - installanydesk.sh
       - installproprietarypackages.sh
-      
+
   - type: dnf
     install:
       packages:
@@ -273,6 +280,6 @@ modules:
   - type: soar
     additional-repos: true
     auto-upgrade: true
-    upgrade-interval: '4h'
+    upgrade-interval: "4h"
 
   - type: signing

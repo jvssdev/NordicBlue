@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-  
+
 name: nordicblue
 
 description: My personal Fedora-based OSTree image with River and Secureblue Trivalent selinux policy.

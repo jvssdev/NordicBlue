@@ -4,7 +4,7 @@ modules:
       copr:
         - yalter/niri
         - ulysg/xwayland-satellite
-        - avengemedia/dms 
+        - avengemedia/dms
     install:
       packages:
         - niri
@@ -13,8 +13,7 @@ modules:
         - gnome-keyring
         - xwayland-satellite
         - xsettingsd
-        - dms 
-
+        - dms
       exclude:
         - alacritty
   - type: systemd
