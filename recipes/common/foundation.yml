@@ -92,9 +92,7 @@ modules:
         - python3-neovim
         - zed
         # Greeter
-        - greetd
-        - tuigreet
-        - greetd-selinux
+        - sddm
         # Network
         - openssl
         - network-manager-applet
