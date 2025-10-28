@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-set -oue pipefail
-
-if [ -f "$riverinit" ]; then
-    river
-else
-    XDG_CONFIG_HOME=/usr/etc/ river
-fi
