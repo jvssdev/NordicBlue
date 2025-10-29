@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "Adding AnyDesk repository..."
 cat > /etc/yum.repos.d/AnyDesk-Fedora.repo << 'EOF'
 [anydesk]
 name=AnyDesk Fedora - stable
@@ -12,4 +13,10 @@ enabled=1
 priority=90
 EOF
 
-dnf5 install -y anydesk
+echo "Importing AnyDesk GPG key..."
+rpm --import https://keys.anydesk.com/repos/RPM-GPG-KEY
+
+echo "Installing AnyDesk..."
+rpm-ostree install anydesk
+
+echo "AnyDesk installation completed."
