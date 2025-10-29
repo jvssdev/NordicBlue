@@ -8,8 +8,8 @@ modules:
 
   - type: script
     scripts:
-      - unprotectsudo.sh
       - installsignedkernel.sh
+
   - type: dnf
     install:
       packages:
@@ -38,12 +38,15 @@ modules:
       - installandroidudev.sh
       - fixupstreamicdloaderbug.sh
 
+  - type: script
+    scripts:
+      - unprotectsudo.sh
+
   - type: dnf
     remove:
       packages:
         - sudo
         - sudo-python-plugin
-        - pkexec
         - default-fonts-cjk-sans
         - google-noto-sans-cjk-vf-fonts
         - firefox
@@ -86,10 +89,8 @@ modules:
         - starship
         - zsh
         # Editors
+        - helix
         - vim
-        - neovim
-        - tree-sitter-cli
-        - python3-neovim
         - zed
         # Greeter
         - sddm
@@ -178,8 +179,6 @@ modules:
         - p7zip
         - git
         - bat
-        - sassc
-        - gtk-murrine-engine
         - qt5ct
         - qt6ct
         - playerctl
@@ -192,9 +191,6 @@ modules:
         - zathura
         - zathura-pdf-poppler
         - rclone
-        # For qmlformat
-        - qt6-qtbase-devel
-        - qt6-qtdeclarative-devel
 
   - type: fonts
     fonts:
@@ -265,6 +261,7 @@ modules:
       enabled:
         - xfce-polkit.service
         - flatpak-setup-gtk-theme.service
+
   - type: script
     scripts:
       - addbrewjustimport.sh
