@@ -5,6 +5,9 @@ echo "Adding negativo17 multimedia repository..."
 curl -Lo /etc/yum.repos.d/negativo17-fedora-multimedia.repo https://negativo17.org/repos/fedora-multimedia.repo
 sed -i '0,/enabled=1/{s/enabled=1/enabled=1\npriority=90/}' /etc/yum.repos.d/negativo17-fedora-multimedia.repo
 
+echo "Importing GPG key for negativo17 repository..."
+rpm --import https://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+
 PACKAGES=(
     "libheif"
     "libva"
@@ -17,13 +20,12 @@ PACKAGES=(
     "mesa-va-drivers"
     "mesa-vulkan-drivers"
     "gstreamer1-plugin-libav"
-    "rar"
 )
 
 AVAILABLE_PACKAGES=()
 echo "Checking available packages in fedora-multimedia repository..."
 for pkg in "${PACKAGES[@]}"; do
-    if dnf list --repo=fedora-multimedia "$pkg" &>/dev/null; then
+    if dnf5 list --repo=fedora-multimedia "$pkg" &>/dev/null; then
         AVAILABLE_PACKAGES+=("$pkg")
         echo "  ✓ $pkg is available"
     else
