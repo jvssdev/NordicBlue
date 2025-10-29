@@ -9,7 +9,7 @@ modules:
   - type: script
     scripts:
       - installsignedkernel.sh
-
+      
   - type: dnf
     install:
       packages:
@@ -38,13 +38,10 @@ modules:
       - installandroidudev.sh
       - fixupstreamicdloaderbug.sh
 
-  - type: script
-    scripts:
-      - unprotectsudo.sh
-
   - type: dnf
     remove:
       packages:
+        # sudo e sudo-python-plugin serão removidos pelo script remove-sudo.sh
         - default-fonts-cjk-sans
         - google-noto-sans-cjk-vf-fonts
         - firefox
@@ -87,8 +84,10 @@ modules:
         - starship
         - zsh
         # Editors
-        - helix
         - vim
+        - neovim
+        - tree-sitter-cli
+        - python3-neovim
         - zed
         # Greeter
         - sddm
@@ -177,6 +176,8 @@ modules:
         - p7zip
         - git
         - bat
+        - sassc
+        - gtk-murrine-engine
         - qt5ct
         - qt6ct
         - playerctl
@@ -189,6 +190,9 @@ modules:
         - zathura
         - zathura-pdf-poppler
         - rclone
+        # For qmlformat
+        - qt6-qtbase-devel
+        - qt6-qtdeclarative-devel
 
   - type: fonts
     fonts:
@@ -204,10 +208,26 @@ modules:
   - type: script
     scripts:
       - installanydesk.sh
-      - installproprietarypackages.sh
 
   - type: dnf
+    repos:
+      files:
+        - https://negativo17.org/repos/fedora-multimedia.repo
+    replace:
+      - from-repo: fedora-multimedia
+        packages:
+          - libheif
+          - libva
+          - libva-intel-media-driver
+          - mesa-dri-drivers
+          - mesa-filesystem
+          - mesa-libEGL
+          - mesa-libGL
+          - mesa-libgbm
+          - mesa-va-drivers
+          - mesa-vulkan-drivers
     install:
+      skip-unavailable: true
       packages:
         - heif-pixbuf-loader
         - ffmpeg
@@ -215,6 +235,7 @@ modules:
         - ffmpegthumbnailer
         - libfdk-aac
         - gstreamer1-plugins-ugly
+        - gstreamer1-plugin-libav
     remove:
       packages:
         - gstreamer1-plugins-ugly-free
@@ -233,6 +254,7 @@ modules:
     scripts:
       - installrpmfusion.sh
       - removeunusedrepos.sh
+      - remove-sudo.sh
 
   - type: files
     files:
@@ -259,7 +281,7 @@ modules:
       enabled:
         - xfce-polkit.service
         - flatpak-setup-gtk-theme.service
-
+        
   - type: script
     scripts:
       - addbrewjustimport.sh
