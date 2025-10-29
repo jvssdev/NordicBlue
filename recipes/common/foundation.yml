@@ -208,13 +208,12 @@ modules:
   - type: script
     scripts:
       - installanydesk.sh
+      - addnegativo17repo.sh
 
   - type: dnf
-    repos:
-      files:
-        - https://negativo17.org/repos/fedora-multimedia.repo
     replace:
       - from-repo: fedora-multimedia
+        skip-unavailable: true
         packages:
           - libheif
           - libva
