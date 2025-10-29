@@ -45,8 +45,6 @@ modules:
   - type: dnf
     remove:
       packages:
-        - sudo
-        - sudo-python-plugin
         - default-fonts-cjk-sans
         - google-noto-sans-cjk-vf-fonts
         - firefox
