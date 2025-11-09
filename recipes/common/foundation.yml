@@ -192,11 +192,11 @@ modules:
         # For qmlformat
         - qt6-qtbase-devel
         - qt6-qtdeclarative-devel
-      replace:
-        - from-repo: fedora
-          packages:
-            - old: OpenCL-ICD-Loader
-              new: ocl-icd
+    replace:
+      - from-repo: fedora
+        packages:
+          - old: OpenCL-ICD-Loader
+            new: ocl-icd
   - type: fonts
     fonts:
       nerd-fonts:
