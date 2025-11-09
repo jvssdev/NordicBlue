@@ -12,6 +12,6 @@ gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 EOF
 
 echo "Installing AnyDesk..."
-dnf5 install -y anydesk
+dnf install -y anydesk
 
 echo "AnyDesk installation completed."
