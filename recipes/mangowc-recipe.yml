@@ -3,7 +3,7 @@
 
 name: nordicblue
 
-description: My personal Fedora-based OSTree image with Niri and DankMaterialShell.
+description: My personal Fedora-based OSTree image with MangoWC.
 
 base-image: quay.io/fedora-ostree-desktops/base-atomic
 
@@ -11,7 +11,7 @@ image-version: 43
 
 modules:
   - from-file: common/foundation.yml
-  - from-file: common/niri-modules.yml
+  - from-file: common/mangowc-modules.yml
   - from-file: common/default-flatpaks.yml
   - from-file: common/dotfiles-modules.yml
   - from-file: common/final-modules.yml

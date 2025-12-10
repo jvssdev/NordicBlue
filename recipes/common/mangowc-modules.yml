@@ -1,0 +1,25 @@
+modules:
+  - type: dnf
+    repos:
+      copr:
+
+      files:
+        - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+    install:
+      packages:
+        - mangowc
+        - xdg-desktop-portal-gtk
+        - xdg-desktop-portal-wlr
+        - waybar
+        - wlsunset
+        - wpaperd
+        - slurp
+        - grim
+  - type: systemd
+    user:
+      enabled:
+        - xwayland-satellite.service
+  - type: files
+    files:
+      - source: system/mango
+        destination: /

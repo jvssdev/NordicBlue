@@ -58,7 +58,6 @@ modules:
         - gmaglione/podman-bootc
         - sneexy/zen-browser
         - secureblue/run0edit
-        - secureblue/trivalent
         - scottames/ghostty
         - lihaohong/yazi
         - che/zed
@@ -67,6 +66,7 @@ modules:
         - dejan/lazygit
         - alternateved/cliphist
         - errornointernet/quickshell
+        - v8v88v8v88/helium 
     install:
       allow-erasing: true
       install-weak-deps: false
@@ -74,8 +74,7 @@ modules:
         # Building block
         - quickshell
         # Browsers
-        - trivalent
-        - trivalent-subresource-filter
+        - helium
         - zen-browser
         # Terminal
         - ghostty
@@ -84,7 +83,7 @@ modules:
         - zsh
         # Editors
         - vim
-        - neovim
+        - helix
         - tree-sitter-cli
         - python3-neovim
         - zed
